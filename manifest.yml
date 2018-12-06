@@ -1,0 +1,12 @@
+---
+applications:
+- instances: 1
+  timeout: 180
+  name: springdemo
+  buildpack:  https://github.com/cloudfoundry/java-buildpack.git#v3.19
+  path: ./target/springdemo-1.0-SNAP19SHOT.jar
+  memory: 256MB
+  domain: mybluemix.net
+  host: springdemo123
+  services:
+    - cloudant-springdemo-sj-4znx-r-hzqr7
