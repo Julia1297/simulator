@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Operation.and;
 
 @Service
 public class VentasService {
-    
+
     private final Database db;
 
     @Autowired
@@ -30,6 +31,13 @@ public class VentasService {
             throw new Exception();
         else
             return ventasRegistrados.get(0);
+    }
+
+    public List<Ventas> obtenerVentasPorNumeroYJuego(String codigo, int  numero) {
+
+        QueryResult<Ventas> queryResult = db.query(new QueryBuilder(and(eq("codigo", codigo),eq("numero",numero))).build(), Ventas.class);
+        List<Ventas> ventasList =  queryResult.getDocs();
+        return  ventasList;
     }
 
     public void save(Ventas ventas ){

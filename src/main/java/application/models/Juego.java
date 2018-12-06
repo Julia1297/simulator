@@ -1,5 +1,7 @@
 package application.models;
 
+import java.util.List;
+
 public class Juego {
     private String _id = null;
     private String _rev = null;
@@ -10,6 +12,8 @@ public class Juego {
     private String empresa4_id;
     private String empresa5_id;
     private  int cantidadEmpresa=1;
+    private double mercadoCubierto;
+    private double mercadoDesatendido;
 
     private String moderador_id;
 
@@ -83,5 +87,29 @@ public class Juego {
 
     public void setCantidadEmpresa(int cantidadEmpresa) {
         this.cantidadEmpresa = cantidadEmpresa;
+    }
+
+
+    public double getMercadoDesatendido() {
+        return mercadoDesatendido;
+    }
+
+    public void setMercadoDesatendido(double mercadoDesatendido) {
+        this.mercadoDesatendido = mercadoDesatendido;
+    }
+    void calcularMercadoCubierto(List<Empresa> empresaList){
+        this.mercadoCubierto=0;
+        for(int i=0;i<empresaList.size();i++){
+            this.mercadoCubierto=this.mercadoCubierto+empresaList.get(i).getCantidadVendida();
+        }
+    }
+
+    //segundo
+    void calcularMercadoDesatendido(List<Empresa> empresaList){
+        this.mercadoCubierto=0;
+        for(int i=0;i<empresaList.size();i++){
+            this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getPorcentajeDeMercado();
+        }
+        this.mercadoDesatendido=this.mercadoCubierto- this.mercadoDesatendido;
     }
 }

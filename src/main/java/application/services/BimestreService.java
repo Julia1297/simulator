@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Operation.and;
 
 @Service
 public class BimestreService {
@@ -22,6 +23,7 @@ public class BimestreService {
 
     @Autowired
     public BimestreService(Database db) {
+
         this.db = db;
     }
 
@@ -37,8 +39,19 @@ public class BimestreService {
     }
 
 
-    public void save(Bimestre bimestre){
-         db.save(bimestre);
+    public List<Bimestre> obtenerBimestrePorNumeroYJuego(String codigo, int  numero) throws BimestrenameNotFoundException {
+
+        QueryResult<Bimestre> queryBimestre = db.query(new QueryBuilder(and(eq("codigo", codigo),eq("numero",numero))).build(), Bimestre.class);
+        List<Bimestre> bimestresRegistrados =  queryBimestre.getDocs();
+        return  bimestresRegistrados;
     }
-    
+
+
+
+
+    public void save(Bimestre bimestre){
+
+        db.save(bimestre);
+    }
+
 }

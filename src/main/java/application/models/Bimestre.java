@@ -12,12 +12,14 @@ public class Bimestre {
     private int inversionEnActivos;
 
     private int numero;
+    //dar
+    private String codigo;
     private String nombreEmpresa;
     private String balanceGeneral_id;
     private String costosProduccion_id;
     private String estadoResultados_id;
     private String ventas_id;
-    
+
 
     public Bimestre(){
         this.precioUnitario=150;
@@ -124,13 +126,20 @@ public class Bimestre {
     public void setVentas_id(String ventas_id) {
         this.ventas_id = ventas_id;
     }
-    
-     public String getNombreEmpresa() {
+
+    public String getNombreEmpresa() {
         return nombreEmpresa;
     }
 
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
     }
-    
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }

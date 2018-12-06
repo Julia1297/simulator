@@ -18,6 +18,8 @@ public class EstadoResultados {
     private int inversionActivos;
     private int utilidadNeta;
 
+
+    private String codigo;
     private int numero;
     private String empresa;
 
@@ -201,5 +203,13 @@ public class EstadoResultados {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

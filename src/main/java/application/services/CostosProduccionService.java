@@ -36,6 +36,7 @@ public class CostosProduccionService {
 
 
     public void save(CostosProduccion costosProduccion ){
+
         db.save(costosProduccion);
     }
 }
