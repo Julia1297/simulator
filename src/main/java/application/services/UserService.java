@@ -11,7 +11,6 @@ import com.cloudant.client.api.query.QueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;

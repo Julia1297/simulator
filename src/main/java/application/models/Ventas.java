@@ -1,28 +1,31 @@
 package application.models;
 
 public class Ventas {
-        private String _id = null;
-        private String _rev = null;
+    private String _id = null;
+    private String _rev = null;
 
-        private int producidoUnidades;
-        private float producidoMonetario;
-        private int ventasRealizadasUnidades;
-        private int ventasRealizadasMonetario;
-        private int inventarioUnidades;
-        private int inventarioMonetario;
-        private int pedidosNoAtendidosUnidades;
-        private int pedidosNoAtendidosMonetario;
+    private int producidoUnidades;
+    private float producidoMonetario;
+    private int ventasRealizadasUnidades;
+    private int ventasRealizadasMonetario;
+    private int inventarioUnidades;
+    private int inventarioMonetario;
+    private int pedidosNoAtendidosUnidades;
+    private int pedidosNoAtendidosMonetario;
 
-        public Ventas(){
-            this.producidoUnidades=500;
-            this.producidoMonetario=47270;
-            this.ventasRealizadasUnidades=500;
-            this.ventasRealizadasMonetario=75000;
-            this.inventarioUnidades=0;
-            this.inventarioMonetario=0;
-            this.pedidosNoAtendidosMonetario=0;
-            this.pedidosNoAtendidosUnidades=0;
-        }
+
+    private  int numero;
+    private String codigo;
+    public Ventas(){
+        this.producidoUnidades=500;
+        this.producidoMonetario=47270;
+        this.ventasRealizadasUnidades=500;
+        this.ventasRealizadasMonetario=75000;
+        this.inventarioUnidades=0;
+        this.inventarioMonetario=0;
+        this.pedidosNoAtendidosMonetario=0;
+        this.pedidosNoAtendidosUnidades=0;
+    }
 
     public int getProducidoUnidades() {
         return producidoUnidades;
@@ -99,15 +102,15 @@ public class Ventas {
     }
 
     public  void calcular(int produccion, float costoUnitario, int inventarioUnidadesAnterior, int precioUnitario){
-            this.producidoUnidades=produccion;
-            this.producidoMonetario=produccion*costoUnitario;
-            //corregir con formula maestra
-            this.ventasRealizadasUnidades=produccion+inventarioUnidadesAnterior;
-            this.ventasRealizadasMonetario=this.ventasRealizadasUnidades*precioUnitario;
-            //preguntar que ventas realizadas PENDIENTE
-            this.inventarioUnidades=produccion+inventarioUnidadesAnterior-ventasRealizadasUnidades;
-            this.inventarioMonetario=this.inventarioUnidades*precioUnitario;
-            //coregir FM
+        this.producidoUnidades=produccion;
+        this.producidoMonetario=produccion*costoUnitario;
+        //corregir con formula maestra
+        this.ventasRealizadasUnidades=produccion+inventarioUnidadesAnterior;
+        this.ventasRealizadasMonetario=this.ventasRealizadasUnidades*precioUnitario;
+        //preguntar que ventas realizadas PENDIENTE
+        this.inventarioUnidades=produccion+inventarioUnidadesAnterior-ventasRealizadasUnidades;
+        this.inventarioMonetario=this.inventarioUnidades*precioUnitario;
+        //coregir FM
         this.pedidosNoAtendidosUnidades=0;
         this.pedidosNoAtendidosMonetario=this.pedidosNoAtendidosUnidades*precioUnitario;
 
@@ -120,5 +123,21 @@ public class Ventas {
 
     public void setProducidoMonetario(float producidoMonetario) {
         this.producidoMonetario = producidoMonetario;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

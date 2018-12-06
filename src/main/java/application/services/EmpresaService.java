@@ -22,6 +22,7 @@ public class EmpresaService {
 
     @Autowired
     public EmpresaService(Database db) {
+
         this.db = db;
     }
 
@@ -38,8 +39,11 @@ public class EmpresaService {
 
 
     public void save(Empresa empresa){
+
         db.save(empresa);
     }
+
+
     public List<Empresa> listarEmpresas(String codigo){
         QueryResult<Empresa> queryResult = db.query(new QueryBuilder(eq("_id",codigo)).build(), Empresa.class);
         List<Empresa> estadoResultados =  queryResult.getDocs();

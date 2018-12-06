@@ -22,6 +22,7 @@ public class JuegoService {
 
     @Autowired
     public JuegoService(Database db) {
+
         this.db = db;
     }
 
@@ -38,6 +39,7 @@ public class JuegoService {
 
 
     public void save(Juego juego) {
+
         db.save(juego);
     }
 

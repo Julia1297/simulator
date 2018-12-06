@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Operation.and;
 
 @Service
 public class EstadoResultadosService {
@@ -20,10 +21,12 @@ public class EstadoResultadosService {
 
     @Autowired
     public EstadoResultadosService(Database db) {
+
         this.db = db;
     }
 
     public void save(EstadoResultados estadoResultados){
+
         db.save(estadoResultados);
     }
     public EstadoResultados obtenerEstadoResultado(String id) throws Exception {
@@ -42,5 +45,12 @@ public class EstadoResultadosService {
             return null;
         else
             return  estadoResultados.subList(1,estadoResultados.size());
+    }
+
+    public List<EstadoResultados> obtenerEstadoResultaodsPorNumeroYJuego(String codigo, int  numero) {
+
+        QueryResult<EstadoResultados> queryResult = db.query(new QueryBuilder(and(eq("codigo", codigo),eq("numero",numero))).build(), EstadoResultados.class);
+        List<EstadoResultados> estadoResultadosList =  queryResult.getDocs();
+        return  estadoResultadosList;
     }
 }
