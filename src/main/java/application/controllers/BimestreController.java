@@ -13,18 +13,21 @@ import java.util.List;
 public class BimestreController {
 
 
-
-
     private final BimestreService bimestreService;
     private final BalanceGeneralService balanceGeneralService;
     private final CostosProduccionService costosProduccionService;
     private final EstadoResultadosService estadoResultadosService;
     private final VentasService ventasService;
-    private final  EmpresaService empresaService;
+    private final EmpresaService empresaService;
     private final JuegoService juegoService;
+    private final ProduccionService produccionService;
+    private final VentasIndustriaService ventasIndustriaService;
+    private final  VisionGeneralService visionGeneralService;
+
+
 
     @Autowired
-    public BimestreController(JuegoService juegoService,EmpresaService empresaService, BimestreService bimestreService, BalanceGeneralService balanceGeneralService, CostosProduccionService costosProduccionService, EstadoResultadosService estadoResultadosService, VentasService ventasService) {
+    public BimestreController(JuegoService juegoService, EmpresaService empresaService, BimestreService bimestreService, BalanceGeneralService balanceGeneralService, CostosProduccionService costosProduccionService, EstadoResultadosService estadoResultadosService, VentasService ventasService, ProduccionService produccionService, VentasIndustriaService ventasIndustriaService, VisionGeneralService visionGeneralService) {
         this.bimestreService = bimestreService;
         this.balanceGeneralService=balanceGeneralService;
         this.costosProduccionService=costosProduccionService;
@@ -32,6 +35,9 @@ public class BimestreController {
         this.ventasService=ventasService;
         this.empresaService=empresaService;
         this.juegoService=juegoService;
+        this.produccionService = produccionService;
+        this.ventasIndustriaService = ventasIndustriaService;
+        this.visionGeneralService = visionGeneralService;
     }
 
     @PostMapping(value="/bimestre",consumes = "application/json")
@@ -67,8 +73,9 @@ public class BimestreController {
             ventasService.save(ventas);
             estadoResultadosService.save(estadoResultados);
             balanceGeneralService.save(balanceGeneral);
+
             List<Empresa> empresas=empresaService.listarEmpresas(empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()).get_id());
-           Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()) ;
+             Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()) ;
 
         }
     }
@@ -126,6 +133,16 @@ public class BimestreController {
                     juego.setCantidadEmpresa(juego.getCantidadEmpresa() + 1);
                     empresa.set_id(empresa.getNombre()+codigo);
                     empresaService.save(empresa);
+                    VisionGeneral visionGeneral =new VisionGeneral();
+                    Produccion produccion= new Produccion();
+                    VentasIndustria ventasIndustria=new VentasIndustria();
+                    visionGeneral.setNombreEmpresa(empresa.getNombre());
+                    visionGeneralService.save(visionGeneral);
+                    produccion.setNombreEmpresa(empresa.getNombre());
+                    produccionService.save(produccion);
+                    ventasIndustria.setNombreEmpresa(empresa.getNombre());                    
+                    ventasIndustriaService.save(ventasIndustria);
+
                 }
 
         }

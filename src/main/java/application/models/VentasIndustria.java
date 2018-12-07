@@ -6,6 +6,9 @@ public class VentasIndustria {
     private String _id = null;
     private String _rev = null;
 
+    private String nombreEmpresa;
+
+
     private int ventasIndustriaUnidadesActual;
     private int ventasIndustriaUnidadesAnterior;
 
@@ -97,6 +100,14 @@ public class VentasIndustria {
 
     public void setInvetarioPromediosAnterior(double invetarioPromediosAnterior) {
         this.invetarioPromediosAnterior = invetarioPromediosAnterior;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
     }
 
     public void calcular(List<Bimestre> bimestreList, List<Ventas> ventasList){
