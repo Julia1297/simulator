@@ -74,8 +74,31 @@ public class BimestreController {
             estadoResultadosService.save(estadoResultados);
             balanceGeneralService.save(balanceGeneral);
 
+            //corregir
+            Juego juego=juegoService.obtenerJuego(bimestre.get_id());
+
+            String numeroBimestreAnterior= String.valueOf((bimestre.getNumero() - 1));
+            Ventas ventasAnterior=ventasService.obtenerVentas("V"+bimestre.getNombreEmpresa()+numeroBimestreAnterior);
             List<Empresa> empresas=empresaService.listarEmpresas(empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()).get_id());
-             Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()) ;
+            Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()) ;
+            empresa.calcularCantidadVendida(empresas,bimestre.getPrecioUnitario());
+
+            //revisas empresas
+            juego.calcularMercadoCubierto(empresas);
+            empresa.calcularPorcentajeMercado(bimestre.getProduccion(),ventasAnterior.getInventarioUnidades(),juego.getMercadoCubierto());
+            juego.calcularMercadoDesatendido(empresas);
+            VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("miid");
+            visionGeneral.calcular(empresa.getCantidadVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
+
+            Produccion produccion=produccionService.obtenerProduccion("miid");
+            //corregir list
+            List<CostosProduccion> costosProduccionList=costosProduccionService.obtenerEstadoResultaodsPorNumeroYJuego("cod",1);
+            List<Bimestre> bimestreList =bimestreService.obtenerBimestrePorNumeroYJuego("cod",1);
+            List<Ventas> ventasList =ventasService.obtenerVentasPorNumeroYJuego("cod",1);
+
+            produccion.calcular(bimestreList,costosProduccionList);
+             VentasIndustria ventasIndustria=ventasIndustriaService.obtenerVentasIndustria("miid");
+             ventasIndustria.calcular(bimestreList,ventasList);
 
         }
     }
@@ -147,6 +170,10 @@ public class BimestreController {
 
         }
     }
-
+    @PostMapping(value="/juego")
+    @ResponseStatus(HttpStatus.OK)
+    public void crearJuego(@RequestBody Juego juego) throws Exception {
+        juegoService.save(juego);
+    }
 
 }
