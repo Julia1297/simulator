@@ -119,7 +119,7 @@ public class Empresa {
         this.cantidadVendidaAnterior = cantidadVendidaAnterior;
     }
 
-    public void calcularPorcentajeMercado(int produccion, int inventarioUnidadesAnterior, int mercado){
+    public void calcularPorcentajeMercado(int produccion, int inventarioUnidadesAnterior, double mercado){
         double res=produccion+inventarioUnidadesAnterior;
         res = Math.min(this.cantidadVendida, res);
         porcentajeDeMercado=res/mercado;

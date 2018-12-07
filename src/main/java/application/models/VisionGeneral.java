@@ -6,10 +6,10 @@ public class VisionGeneral {
     private String _rev = null;
 
     private String nombreEmpresa;
-    private float ventas;
-    private float beneficio;
+    private double ventas;
+    private double beneficio;
     private int precioUnitario;
-    private int porcentajeDeMercado;
+    private double porcentajeDeMercado;
 
     public String get_id() {
         return _id;
@@ -35,19 +35,19 @@ public class VisionGeneral {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public float getVentas() {
+    public double getVentas() {
         return ventas;
     }
 
-    public void setVentas(float ventas) {
+    public void setVentas(double ventas) {
         this.ventas = ventas;
     }
 
-    public float getBeneficio() {
+    public double getBeneficio() {
         return beneficio;
     }
 
-    public void setBeneficio(float beneficio) {
+    public void setBeneficio(double beneficio) {
         this.beneficio = beneficio;
     }
 
@@ -59,16 +59,16 @@ public class VisionGeneral {
         this.precioUnitario = precioUnitario;
     }
 
-    public int getPorcentajeDeMercado() {
+    public double getPorcentajeDeMercado() {
         return porcentajeDeMercado;
     }
 
-    public void setPorcentajeDeMercado(int porcentajeDeMercado) {
+    public void setPorcentajeDeMercado(double porcentajeDeMercado) {
         this.porcentajeDeMercado = porcentajeDeMercado;
     }
 
-    public void calcular(int cantidadVendida, int produccion,int utilidadNeta, int precioUnitario, int porcentajeDeMercado){
-        this.ventas= Math.min(cantidadVendida,produccion);
+    public void calcular(double cantidadVendida, int produccion, int utilidadNeta, int precioUnitario, double porcentajeDeMercado){
+        this.ventas=  Math.min(cantidadVendida,produccion);
         this.beneficio=utilidadNeta;
         this.precioUnitario=precioUnitario;
         this.porcentajeDeMercado=porcentajeDeMercado;

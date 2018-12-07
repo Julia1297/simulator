@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Operation.and;
 
 @Service
 public class CostosProduccionService {
@@ -38,5 +39,12 @@ public class CostosProduccionService {
     public void save(CostosProduccion costosProduccion ){
 
         db.save(costosProduccion);
+    }
+
+    public List<CostosProduccion> obtenerEstadoResultaodsPorNumeroYJuego(String codigo, int  numero) {
+
+        QueryResult<CostosProduccion> queryResult = db.query(new QueryBuilder(and(eq("codigo", codigo),eq("numero",numero))).build(), CostosProduccion.class);
+        List<CostosProduccion> costosProduccionList=  queryResult.getDocs();
+        return  costosProduccionList;
     }
 }

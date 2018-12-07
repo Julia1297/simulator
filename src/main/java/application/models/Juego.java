@@ -95,9 +95,20 @@ public class Juego {
     }
 
     public void setMercadoDesatendido(double mercadoDesatendido) {
+
         this.mercadoDesatendido = mercadoDesatendido;
     }
-    void calcularMercadoCubierto(List<Empresa> empresaList){
+
+    public double getMercadoCubierto() {
+        return mercadoCubierto;
+    }
+
+    public void setMercadoCubierto(double mercadoCubierto) {
+
+        this.mercadoCubierto = mercadoCubierto;
+    }
+
+    public  void calcularMercadoCubierto(List<Empresa> empresaList){
         this.mercadoCubierto=0;
         for(int i=0;i<empresaList.size();i++){
             this.mercadoCubierto=this.mercadoCubierto+empresaList.get(i).getCantidadVendida();
@@ -105,7 +116,7 @@ public class Juego {
     }
 
     //segundo
-    void calcularMercadoDesatendido(List<Empresa> empresaList){
+    public  void calcularMercadoDesatendido(List<Empresa> empresaList){
         this.mercadoCubierto=0;
         for(int i=0;i<empresaList.size();i++){
             this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getPorcentajeDeMercado();
