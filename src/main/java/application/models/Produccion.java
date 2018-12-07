@@ -14,8 +14,12 @@ public class Produccion {
     private double costeMedioTotalAnterior;
     private double costeMedioUnitarioActual;
     private double costeMedioUnitarioAnterior;
-   // private int capacidadProduccionActual;
-    //private int capacidadProduccionAnterior;
+    private String nombreEmpresa;
+
+
+//    private double produccionIndustriaVariacion;
+  //  private double costeMedioTotalVariacion;
+    //private double costeMedioUnitarioVariacion;
 
 
     public String get_id() {
@@ -50,6 +54,24 @@ public class Produccion {
 
     public void setProduccionIndustriaValorAnterior(int produccionIndustriaValorAnterior) {
         this.produccionIndustriaValorAnterior = produccionIndustriaValorAnterior;
+    }
+
+    
+
+    public double getCosteMedioTotalAnterior() {
+        return costeMedioTotalAnterior;
+    }
+
+    public void setCosteMedioTotalAnterior(double costeMedioTotalAnterior) {
+        this.costeMedioTotalAnterior = costeMedioTotalAnterior;
+    }
+
+       public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
     }
 
     public void calcular(List<Bimestre> bimestreList, List<CostosProduccion> costosProduccionList){
