@@ -17,7 +17,7 @@ public class Empresa {
     private double cantidadVendida;
     private double cantidadVendidaAnterior=500;
     private double porcentajeDeMercado;
-    private String codigo;
+    private String codigoJuego;
 
 
 
@@ -108,8 +108,11 @@ public class Empresa {
             if(empresaList.get(i).get_id()!=this._id);
                 suma=suma+empresaList.get(i).getCantidadVendidaAnterior();
         }
+
         suma=suma/2;
         this.cantidadVendida=((337.5-precioUnitario)/0.18)-suma;
+        cantidadVendida=(double) Math.round(cantidadVendida*100)/100;
+        System.out.println(this.cantidadVendida);
         this.cantidadVendidaAnterior=this.cantidadVendida;
     }
 
@@ -130,11 +133,11 @@ public class Empresa {
     }
 
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoJuego() {
+        return codigoJuego;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoJuego(String codigoJuego) {
+        this.codigoJuego = codigoJuego;
     }
 }

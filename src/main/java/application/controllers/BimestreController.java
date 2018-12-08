@@ -84,12 +84,14 @@ public class BimestreController {
             List<Empresa> empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
             Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             empresa.calcularCantidadVendida(empresas,bimestre.getPrecioUnitario());
-
+            empresaService.update(empresa);
             //revisas empresas
+            empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
             juego.calcularMercadoCubierto(empresas);
-
+            empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             empresa.calcularPorcentajeMercado(bimestre.getProduccion(),ventasUnidades,juego.getMercadoCubierto());
-
+            empresaService.update(empresa);
+            empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
             juego.calcularMercadoDesatendido(empresas);
 
             VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+empresa.getNombre()+bimestre.getCodigo());
@@ -107,7 +109,7 @@ public class BimestreController {
             ventasIndustria.calcular(bimestreList,ventasList);
 
             ventasIndustriaService.update(ventasIndustria);
-            empresaService.update(empresa);
+
         }
     }
     @GetMapping(value="/estadoResultados/{id}")
@@ -181,7 +183,7 @@ public class BimestreController {
                         juego.setEmpresa5_id(empresa.getNombre()+codigo);
                     }
                     juego.setCantidadEmpresa(juego.getCantidadEmpresa() + 1);
-                    empresa.setCodigo(codigo);
+                    empresa.setCodigoJuego(codigo);
                     empresa.set_id(empresa.getNombre()+codigo);
                     empresaService.save(empresa);
                     VisionGeneral visionGeneral =new VisionGeneral();

@@ -46,7 +46,7 @@ public class EmpresaService {
 
 
     public List<Empresa> listarEmpresasPorCodigoJuego(String codigo){
-        QueryResult<Empresa> queryResult = db.query(new QueryBuilder(and(eq("codigo",codigo),eq("bimestre3_id","y"))).build(), Empresa.class);
+        QueryResult<Empresa> queryResult = db.query(new QueryBuilder(eq("codigoJuego",codigo)).build(), Empresa.class);
         List<Empresa> estadoResultados =  queryResult.getDocs();
         if(estadoResultados.size()==0)
             return null;

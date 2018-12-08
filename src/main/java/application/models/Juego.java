@@ -115,8 +115,12 @@ public class Juego {
         for(int i=0;i<empresaList.size();i++){
             this.mercadoCubierto=this.mercadoCubierto+empresaList.get(i).getCantidadVendida();
             System.out.println(empresaList.get(i).getCantidadVendida());
+            System.out.println(empresaList.get(i).get_id());
+
 
         }
+        System.out.println("mercado:");
+        System.out.println(mercadoCubierto);
     }
 
     //segundo
