@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Operation.and;
 
 @Service
 public class EmpresaService {
@@ -44,12 +45,16 @@ public class EmpresaService {
     }
 
 
-    public List<Empresa> listarEmpresas(String codigo){
-        QueryResult<Empresa> queryResult = db.query(new QueryBuilder(eq("_id",codigo)).build(), Empresa.class);
+    public List<Empresa> listarEmpresasPorCodigoJuego(String codigo){
+        QueryResult<Empresa> queryResult = db.query(new QueryBuilder(and(eq("codigo",codigo),eq("bimestre3_id","y"))).build(), Empresa.class);
         List<Empresa> estadoResultados =  queryResult.getDocs();
         if(estadoResultados.size()==0)
             return null;
         else
             return  estadoResultados;
     }
+    public  void update(Empresa empresa) {
+        db.update(empresa);
+    }
+
 }

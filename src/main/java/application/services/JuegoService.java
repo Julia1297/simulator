@@ -37,7 +37,9 @@ public class JuegoService {
             return juegosRegistrados.get(0);
     }
 
-
+    public void update( Juego juego) {
+        db.update(juego);
+    }
     public void save(Juego juego) {
 
         db.save(juego);

@@ -30,9 +30,19 @@ public class VisionGeneralService {
             return visionGeneralList.get(0);
     }
 
-
+    public List<VisionGeneral> listarVisionesGeneralesJuego(String codigo){
+        QueryResult<VisionGeneral> queryResult = db.query(new QueryBuilder(eq("codigo", codigo)).build(), VisionGeneral.class);
+        List<VisionGeneral> visionGeneralList =  queryResult.getDocs();
+        if(visionGeneralList.size()==0)
+            return null;
+        else
+            return  visionGeneralList;
+    }
     public void save(VisionGeneral visionGeneral ){
 
         db.save(visionGeneral);
+    }
+    public  void update(VisionGeneral visionGeneral){
+        db.update(visionGeneral);
     }
 }

@@ -15,6 +15,10 @@ public class Produccion {
     private double costeMedioUnitarioActual;
     private double costeMedioUnitarioAnterior;
     private String nombreEmpresa;
+    private String codigo;
+
+    private int numero;
+
 
 
 //    private double produccionIndustriaVariacion;
@@ -89,4 +93,27 @@ public class Produccion {
         this.costeMedioUnitarioActual=this.costeMedioUnitarioActual/costosProduccionList.size();
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public double getCosteMedioUnitarioAnterior() {
+        return costeMedioUnitarioAnterior;
+    }
+
+    public void setCosteMedioUnitarioAnterior(double costeMedioUnitarioAnterior) {
+        this.costeMedioUnitarioAnterior = costeMedioUnitarioAnterior;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 }

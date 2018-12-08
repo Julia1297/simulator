@@ -36,4 +36,8 @@ public class VentasIndustriaService {
 
         db.save(ventasIndustria);
     }
+    public void update(VentasIndustria ventasIndustria ){
+
+        db.update(ventasIndustria);
+    }
 }

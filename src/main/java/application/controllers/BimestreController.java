@@ -49,19 +49,24 @@ public class BimestreController {
             CostosProduccion costosProduccion=new CostosProduccion();
             EstadoResultados estadoResultados=new EstadoResultados();
             Ventas ventas=new Ventas();
-            bimestre.set_id("bimestre"+bimestre.getNombreEmpresa()+bimestre.getNumero());
+            int ventasUnidades=0;
 
+            bimestre.set_id("bimestre"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             balanceGeneral.set_id("BG"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             costosProduccion.set_id("CP"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             estadoResultados.set_id("ER"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             ventas.set_id("V"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             estadoResultados.setEmpresa(bimestre.getNombreEmpresa());
+            ventas.setCodigo(bimestre.getCodigo());
+
+
             if(bimestre.getNumero()!=0) {
             //COSTOS PRODUCCION
                 costosProduccion.calcular(bimestre.getProduccion());
                 //VENTAS
                 String numeroBimestreAnterior= String.valueOf((bimestre.getNumero() - 1));
                 Ventas ventasAnterior=ventasService.obtenerVentas("V"+bimestre.getNombreEmpresa()+numeroBimestreAnterior);
+                ventasUnidades=ventasAnterior.getInventarioUnidades();
                 ventas.calcular(bimestre.getProduccion(),costosProduccion.getCostoUnitario(),ventasAnterior.getInventarioUnidades(),bimestre.getPrecioUnitario());
                 //ESTADO RESULTADOS
                 estadoResultados.calcular(ventas.getVentasRealizadasMonetario(),costosProduccion.getMateriaPrima(),costosProduccion.getManoDeObraDirecta(),costosProduccion.getCostosIndirectos(),bimestre.getInversionEnMarketing(),bimestre.getInversionEnInvestigacion(),bimestre.getInversionEnActivos());
@@ -75,31 +80,34 @@ public class BimestreController {
             balanceGeneralService.save(balanceGeneral);
 
             //corregir
-            Juego juego=juegoService.obtenerJuego(bimestre.get_id());
-
-            String numeroBimestreAnterior= String.valueOf((bimestre.getNumero() - 1));
-            Ventas ventasAnterior=ventasService.obtenerVentas("V"+bimestre.getNombreEmpresa()+numeroBimestreAnterior);
-            List<Empresa> empresas=empresaService.listarEmpresas(empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()).get_id());
-            Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()) ;
+            Juego juego=juegoService.obtenerJuego(bimestre.getCodigo());
+            List<Empresa> empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
+            Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             empresa.calcularCantidadVendida(empresas,bimestre.getPrecioUnitario());
 
             //revisas empresas
             juego.calcularMercadoCubierto(empresas);
-            empresa.calcularPorcentajeMercado(bimestre.getProduccion(),ventasAnterior.getInventarioUnidades(),juego.getMercadoCubierto());
+
+            empresa.calcularPorcentajeMercado(bimestre.getProduccion(),ventasUnidades,juego.getMercadoCubierto());
+
             juego.calcularMercadoDesatendido(empresas);
-            VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("miid");
+
+            VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+empresa.getNombre()+bimestre.getCodigo());
             visionGeneral.calcular(empresa.getCantidadVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
-
-            Produccion produccion=produccionService.obtenerProduccion("miid");
+            visionGeneralService.update(visionGeneral);
+            Produccion produccion=produccionService.obtenerProduccion("PR"+empresa.getNombre()+bimestre.getCodigo());
+            produccion.setNumero(bimestre.getNumero());
             //corregir list
-            List<CostosProduccion> costosProduccionList=costosProduccionService.obtenerEstadoResultaodsPorNumeroYJuego("cod",1);
-            List<Bimestre> bimestreList =bimestreService.obtenerBimestrePorNumeroYJuego("cod",1);
-            List<Ventas> ventasList =ventasService.obtenerVentasPorNumeroYJuego("cod",1);
-
+            List<CostosProduccion> costosProduccionList=costosProduccionService.obtenerEstadoResultaodsPorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
+            List<Bimestre> bimestreList =bimestreService.obtenerBimestrePorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
+            List<Ventas> ventasList =ventasService.obtenerVentasPorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
             produccion.calcular(bimestreList,costosProduccionList);
-             VentasIndustria ventasIndustria=ventasIndustriaService.obtenerVentasIndustria("miid");
-             ventasIndustria.calcular(bimestreList,ventasList);
+            produccionService.update(produccion);
+            VentasIndustria ventasIndustria=ventasIndustriaService.obtenerVentasIndustria("VI"+empresa.getNombre()+bimestre.getCodigo());
+            ventasIndustria.calcular(bimestreList,ventasList);
 
+            ventasIndustriaService.update(ventasIndustria);
+            empresaService.update(empresa);
         }
     }
     @GetMapping(value="/estadoResultados/{id}")
@@ -118,6 +126,25 @@ public class BimestreController {
     @ResponseStatus(HttpStatus.OK)
     public Ventas getVentas(@PathVariable String id) throws Exception {
         return ventasService.obtenerVentas(id);
+    }
+
+    @GetMapping(value="/produccion/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Produccion getProduccion(@PathVariable String id) throws Exception {
+        return produccionService.obtenerProduccion(id);
+    }
+
+    @GetMapping(value="/ventasIndustria/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public VentasIndustria getVentasIndustria(@PathVariable String id) throws Exception {
+        return ventasIndustriaService.obtenerVentasIndustria(id);
+    }
+
+    //id codigo juego
+    @GetMapping(value="/visionGeneral/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<VisionGeneral> getVisionesGenerales(@PathVariable String id) throws Exception {
+        return visionGeneralService.listarVisionesGeneralesJuego(id);
     }
 
     @GetMapping(value="/costosProduccion/{id}")
@@ -154,17 +181,24 @@ public class BimestreController {
                         juego.setEmpresa5_id(empresa.getNombre()+codigo);
                     }
                     juego.setCantidadEmpresa(juego.getCantidadEmpresa() + 1);
+                    empresa.setCodigo(codigo);
                     empresa.set_id(empresa.getNombre()+codigo);
                     empresaService.save(empresa);
                     VisionGeneral visionGeneral =new VisionGeneral();
                     Produccion produccion= new Produccion();
                     VentasIndustria ventasIndustria=new VentasIndustria();
+                    visionGeneral.set_id("VG"+empresa.getNombre()+codigo);
                     visionGeneral.setNombreEmpresa(empresa.getNombre());
+                    visionGeneral.setCodigo(codigo);
                     visionGeneralService.save(visionGeneral);
                     produccion.setNombreEmpresa(empresa.getNombre());
+                    produccion.set_id("PR"+empresa.getNombre()+codigo);
+
                     produccionService.save(produccion);
-                    ventasIndustria.setNombreEmpresa(empresa.getNombre());                    
+                    ventasIndustria.setNombreEmpresa(empresa.getNombre());
+                    ventasIndustria.set_id("VI"+empresa.getNombre()+codigo);
                     ventasIndustriaService.save(ventasIndustria);
+                    juegoService.update(juego);
 
                 }
 
@@ -173,6 +207,7 @@ public class BimestreController {
     @PostMapping(value="/juego")
     @ResponseStatus(HttpStatus.OK)
     public void crearJuego(@RequestBody Juego juego) throws Exception {
+
         juegoService.save(juego);
     }
 

@@ -12,11 +12,13 @@ public class Empresa {
     private String user_id;
     private String bimestre1_id;
     private String bimestre2_id;
-    private String bimestre3_id;
+    private String bimestre3_id="y";
     private int numeroBimestre=1;
     private double cantidadVendida;
     private double cantidadVendidaAnterior=500;
     private double porcentajeDeMercado;
+    private String codigo;
+
 
 
 
@@ -128,4 +130,11 @@ public class Empresa {
     }
 
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }

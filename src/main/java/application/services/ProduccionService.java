@@ -36,7 +36,11 @@ public class ProduccionService {
 
         db.save(produccion);
     }
-    
+
+    public void update(Produccion produccion ){
+
+        db.update(produccion);
+    }
     
     
     

@@ -110,8 +110,12 @@ public class Juego {
 
     public  void calcularMercadoCubierto(List<Empresa> empresaList){
         this.mercadoCubierto=0;
+        System.out.println();
+        System.out.println(empresaList.size());
         for(int i=0;i<empresaList.size();i++){
             this.mercadoCubierto=this.mercadoCubierto+empresaList.get(i).getCantidadVendida();
+            System.out.println(empresaList.get(i).getCantidadVendida());
+
         }
     }
 

@@ -10,6 +10,7 @@ public class VisionGeneral {
     private double beneficio;
     private int precioUnitario;
     private double porcentajeDeMercado;
+    private String codigo;
 
     public String get_id() {
         return _id;
@@ -75,4 +76,11 @@ public class VisionGeneral {
 
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }
