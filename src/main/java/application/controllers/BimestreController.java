@@ -191,7 +191,7 @@ public class BimestreController {
                     VentasIndustria ventasIndustria=new VentasIndustria();
                     visionGeneral.set_id("VG"+empresa.getNombre()+codigo);
                     visionGeneral.setNombreEmpresa(empresa.getNombre());
-                    visionGeneral.setCodigo(codigo);
+                    visionGeneral.setCodigoVision(codigo);
                     visionGeneralService.save(visionGeneral);
                     produccion.setNombreEmpresa(empresa.getNombre());
                     produccion.set_id("PR"+empresa.getNombre()+codigo);
