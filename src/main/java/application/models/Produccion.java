@@ -10,9 +10,9 @@ public class Produccion {
 
     private int produccionIndustriaValorActual;
     private int produccionIndustriaValorAnterior;
-    private double costeMedioTotalActual;
+    private double costeMedioTotalActual=0;
     private double costeMedioTotalAnterior;
-    private double costeMedioUnitarioActual;
+    private double costeMedioUnitarioActual=0;
     private double costeMedioUnitarioAnterior;
     private String nombreEmpresa;
     private String codigo;
@@ -86,11 +86,11 @@ public class Produccion {
         this.produccionIndustriaValorActual=suma;
         suma=0;
         for(int i=0;i<costosProduccionList.size();i++){
-            this.costeMedioTotalActual=this.costeMedioTotalActual+costosProduccionList.get(i).getCostoTotal();
-            this.costeMedioUnitarioActual=this.costeMedioUnitarioActual+costosProduccionList.get(i).getCostoUnitario();
+            this.setCosteMedioTotalActual(this.getCosteMedioTotalActual() +costosProduccionList.get(i).getCostoTotal());
+            this.setCosteMedioUnitarioActual(this.getCosteMedioUnitarioActual() +costosProduccionList.get(i).getCostoUnitario());
         }
-        this.costeMedioTotalActual=this.costeMedioTotalActual/costosProduccionList.size();
-        this.costeMedioUnitarioActual=this.costeMedioUnitarioActual/costosProduccionList.size();
+        this.setCosteMedioTotalActual(this.getCosteMedioTotalActual() /costosProduccionList.size());
+        this.setCosteMedioUnitarioActual(this.getCosteMedioUnitarioActual() /costosProduccionList.size());
     }
 
     public String getCodigo() {
@@ -115,5 +115,21 @@ public class Produccion {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public double getCosteMedioTotalActual() {
+        return costeMedioTotalActual;
+    }
+
+    public void setCosteMedioTotalActual(double costeMedioTotalActual) {
+        this.costeMedioTotalActual = costeMedioTotalActual;
+    }
+
+    public double getCosteMedioUnitarioActual() {
+        return costeMedioUnitarioActual;
+    }
+
+    public void setCosteMedioUnitarioActual(double costeMedioUnitarioActual) {
+        this.costeMedioUnitarioActual = costeMedioUnitarioActual;
     }
 }
