@@ -103,12 +103,13 @@ public class BimestreController {
             List<CostosProduccion> costosProduccionList=costosProduccionService.obtenerEstadoResultaodsPorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
             List<Bimestre> bimestreList =bimestreService.obtenerBimestrePorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
             List<Ventas> ventasList =ventasService.obtenerVentasPorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
+            produccion.cambiarActualAnterior();
             produccion.calcular(bimestreList,costosProduccionList);
             produccionService.update(produccion);
             VentasIndustria ventasIndustria=ventasIndustriaService.obtenerVentasIndustria("VI"+empresa.getNombre()+bimestre.getCodigo());
-            ventasIndustria.calcular(bimestreList,ventasList);
-
+            ventasIndustria.cambiarActualAnterior();
             ventasIndustriaService.update(ventasIndustria);
+            ventasIndustria.calcular(bimestreList,ventasList);
 
         }
     }
@@ -136,10 +137,22 @@ public class BimestreController {
         return produccionService.obtenerProduccion(id);
     }
 
+    @GetMapping(value="/produccionBimestres/{nombre}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Produccion> getProduccionBimestres(@PathVariable String nombre) throws Exception {
+        return produccionService.obtenerListaProduccionBimestre(nombre);
+    }
+
     @GetMapping(value="/ventasIndustria/{id}")
     @ResponseStatus(HttpStatus.OK)
     public VentasIndustria getVentasIndustria(@PathVariable String id) throws Exception {
         return ventasIndustriaService.obtenerVentasIndustria(id);
+    }
+
+    @GetMapping(value="/ventasIndustriaBimestres/{nombre}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<VentasIndustria> getVentasIndustriaBimestre(@PathVariable String nombre) throws Exception {
+        return ventasIndustriaService.obtenerListaVentasIndustriaBimestre(nombre);
     }
 
     //id codigo juego
@@ -193,11 +206,11 @@ public class BimestreController {
                     visionGeneral.setNombreEmpresa(empresa.getNombre());
                     visionGeneral.setCodigoVision(codigo);
                     visionGeneralService.save(visionGeneral);
-                    produccion.setNombreEmpresa(empresa.getNombre());
+                    produccion.setNombreEmpresaProduccion(empresa.getNombre());
                     produccion.set_id("PR"+empresa.getNombre()+codigo);
 
                     produccionService.save(produccion);
-                    ventasIndustria.setNombreEmpresa(empresa.getNombre());
+                    ventasIndustria.setNombreEmpresaVentasI(empresa.getNombre());
                     ventasIndustria.set_id("VI"+empresa.getNombre()+codigo);
                     ventasIndustriaService.save(ventasIndustria);
                     juegoService.update(juego);

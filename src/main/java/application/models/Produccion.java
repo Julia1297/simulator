@@ -14,7 +14,7 @@ public class Produccion {
     private double costeMedioTotalAnterior;
     private double costeMedioUnitarioActual=0;
     private double costeMedioUnitarioAnterior;
-    private String nombreEmpresa;
+    private String nombreEmpresaProduccion;
     private String codigo;
 
     private int numero;
@@ -70,12 +70,12 @@ public class Produccion {
         this.costeMedioTotalAnterior = costeMedioTotalAnterior;
     }
 
-       public String getNombreEmpresa() {
-        return nombreEmpresa;
+       public String getNombreEmpresaProduccion() {
+        return nombreEmpresaProduccion;
     }
 
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
+    public void setNombreEmpresaProduccion(String nombreEmpresaProduccion) {
+        this.nombreEmpresaProduccion = nombreEmpresaProduccion;
     }
 
     public void calcular(List<Bimestre> bimestreList, List<CostosProduccion> costosProduccionList){
@@ -93,6 +93,11 @@ public class Produccion {
         this.setCosteMedioUnitarioActual(this.getCosteMedioUnitarioActual() /costosProduccionList.size());
     }
 
+    public void cambiarActualAnterior(){
+        this.produccionIndustriaValorAnterior=this.produccionIndustriaValorActual;
+        this.costeMedioTotalAnterior=this.costeMedioTotalActual;
+        this.costeMedioUnitarioAnterior=this.costeMedioUnitarioActual;
+    }
     public String getCodigo() {
         return codigo;
     }

@@ -31,6 +31,13 @@ public class ProduccionService {
             return produccionList.get(0);
     }
 
+    public List< Produccion> obtenerListaProduccionBimestre(String nombre) throws Exception {
+
+        QueryResult<Produccion> queryProduccion = db.query(new QueryBuilder(eq("nombreEmpresaProduccion", nombre)).build(), Produccion.class);
+        List<Produccion> produccionList =  queryProduccion.getDocs();
+        return  produccionList;
+    }
+
 
     public void save(Produccion produccion ){
 

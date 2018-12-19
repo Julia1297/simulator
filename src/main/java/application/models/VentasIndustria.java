@@ -6,7 +6,7 @@ public class VentasIndustria {
     private String _id = null;
     private String _rev = null;
 
-    private String nombreEmpresa;
+    private String nombreEmpresaVentasI;
 
 
     private int ventasIndustriaUnidadesActual;
@@ -102,12 +102,12 @@ public class VentasIndustria {
         this.invetarioPromediosAnterior = invetarioPromediosAnterior;
     }
 
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
+    public String getNombreEmpresaVentasI() {
+        return nombreEmpresaVentasI;
     }
 
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
+    public void setNombreEmpresaVentasI(String nombreEmpresaVentasI) {
+        this.nombreEmpresaVentasI = nombreEmpresaVentasI;
     }
 
     public void calcular(List<Bimestre> bimestreList, List<Ventas> ventasList){
@@ -123,6 +123,12 @@ public class VentasIndustria {
             this.inventarioPromediosActual=this.inventarioPromediosActual+ventasList.get(i).getInventarioUnidades();
         }
         this.inventarioPromediosActual=this.inventarioPromediosActual/ventasList.size();
+    }
+    public  void cambiarActualAnterior(){
+        this.invetarioPromediosAnterior=this.inventarioPromediosActual;
+        this.ventasIndustriaMonetarioAnterior=this.ventasIndustriaMonetarioActual;
+        this.ventasIndustriaUnidadesAnterior=this.ventasIndustriaUnidadesActual;
+        this.precioUnitarioPromedioAnterior=this.precioUnitarioPromedioActual;
     }
 
 }

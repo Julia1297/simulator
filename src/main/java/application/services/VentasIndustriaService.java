@@ -31,6 +31,13 @@ public class VentasIndustriaService {
             return ventasIndustriaList.get(0);
     }
 
+    public List< VentasIndustria> obtenerListaVentasIndustriaBimestre(String nombre) throws Exception {
+
+        QueryResult<VentasIndustria> queryResult = db.query(new QueryBuilder(eq("nombreEmpresaVentasI", nombre)).build(), VentasIndustria.class);
+        List<VentasIndustria> ventasIndustriaList =  queryResult.getDocs();
+        return  ventasIndustriaList;
+    }
+
 
     public void save(VentasIndustria ventasIndustria ){
 
