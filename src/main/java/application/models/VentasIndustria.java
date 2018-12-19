@@ -21,6 +21,7 @@ public class VentasIndustria {
     private double inventarioPromediosActual;
     private double invetarioPromediosAnterior;
 
+    private int numero;
 
     public String get_id() {
         return _id;
@@ -130,5 +131,11 @@ public class VentasIndustria {
         this.ventasIndustriaUnidadesAnterior=this.ventasIndustriaUnidadesActual;
         this.precioUnitarioPromedioAnterior=this.precioUnitarioPromedioActual;
     }
+  public int getNumero() {
+        return numero;
+    }
 
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 }

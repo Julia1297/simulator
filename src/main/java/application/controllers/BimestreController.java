@@ -108,8 +108,10 @@ public class BimestreController {
             produccionService.update(produccion);
             VentasIndustria ventasIndustria=ventasIndustriaService.obtenerVentasIndustria("VI"+empresa.getNombre()+bimestre.getCodigo());
             ventasIndustria.cambiarActualAnterior();
-            ventasIndustriaService.update(ventasIndustria);
             ventasIndustria.calcular(bimestreList,ventasList);
+            ventasIndustria.setNumero(bimestre.getNumero());
+
+            ventasIndustriaService.update(ventasIndustria);
 
         }
     }
