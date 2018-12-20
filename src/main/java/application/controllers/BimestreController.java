@@ -57,6 +57,7 @@ public class BimestreController {
             estadoResultados.set_id("ER"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             ventas.set_id("V"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             estadoResultados.setEmpresa(bimestre.getNombreEmpresa());
+            estadoResultados.setCodigo(bimestre.getCodigo());
             ventas.setCodigo(bimestre.getCodigo());
 
 
@@ -148,6 +149,12 @@ public class BimestreController {
     @ResponseStatus(HttpStatus.OK)
     public List<Double> getPrecioUnitarioBimestres(@PathVariable String codigo) throws Exception {
         return bimestreService.promedioPrecioUnitarioEmpresas(codigo);
+    }
+
+    @GetMapping(value="/utilidadNetaBimestres/{codigo}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Double> getUtilidadNetaBimestres(@PathVariable String codigo) throws Exception {
+        return estadoResultadosService.promedioUtilidadNetaEmpresas(codigo);
     }
 
     @GetMapping(value="/ventasIndustria/{id}")
