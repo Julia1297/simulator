@@ -9,6 +9,8 @@ import com.cloudant.client.api.query.QueryBuilder;
 import com.cloudant.client.api.query.QueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
@@ -47,6 +49,27 @@ public class BimestreService {
     }
 
 
+    public List <Double> promedioPrecioUnitarioEmpresas(String codigo) {
+        QueryResult<Bimestre> queryResult = db.query(new QueryBuilder(eq("codigo", codigo)).build(), Bimestre.class);
+        List<Bimestre> bimestres = queryResult.getDocs();
+        int suma = 0;
+        int cantidad = 0;
+        List<Double> promedios = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < bimestres.size(); j++) {
+                if (bimestres.get(j).getNumero() == i) {
+                    suma = suma + bimestres.get(j).getPrecioUnitario();
+                    cantidad++;
+                }
+            }
+            suma = suma / cantidad;
+            promedios.add((double) suma);
+            suma = 0;
+            cantidad = 0;
+        }
+        return  promedios;
+    }
 
 
     public void save(Bimestre bimestre){

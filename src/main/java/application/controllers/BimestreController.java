@@ -139,10 +139,10 @@ public class BimestreController {
         return produccionService.obtenerProduccion(id);
     }
 
-    @GetMapping(value="/produccionBimestres/{nombre}")
+    @GetMapping(value="/produccionBimestres/{codigo}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Produccion> getProduccionBimestres(@PathVariable String nombre) throws Exception {
-        return produccionService.obtenerListaProduccionBimestre(nombre);
+    public List<Double> getProduccionBimestres(@PathVariable String codigo) throws Exception {
+        return produccionService.sumatoriaProduccionEmpresas(codigo);
     }
 
     @GetMapping(value="/ventasIndustria/{id}")
