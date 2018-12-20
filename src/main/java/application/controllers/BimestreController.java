@@ -144,6 +144,11 @@ public class BimestreController {
     public List<Double> getProduccionBimestres(@PathVariable String codigo) throws Exception {
         return produccionService.sumatoriaProduccionEmpresas(codigo);
     }
+    @GetMapping(value="/precioUnitarioBimestres/{codigo}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Double> getPrecioUnitarioBimestres(@PathVariable String codigo) throws Exception {
+        return bimestreService.promedioPrecioUnitarioEmpresas(codigo);
+    }
 
     @GetMapping(value="/ventasIndustria/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -175,6 +180,7 @@ public class BimestreController {
     public List<EstadoResultados> getAll(@PathVariable String empresa) throws Exception {
         return estadoResultadosService.listarEstadosEmpresa(empresa);
     }
+
 
     @PostMapping(value="/empresa/{codigo}")
     @ResponseStatus(HttpStatus.OK)

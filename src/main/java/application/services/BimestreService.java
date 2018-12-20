@@ -56,7 +56,7 @@ public class BimestreService {
         int cantidad = 0;
         List<Double> promedios = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 1; i < 4; i++) {
             for (int j = 0; j < bimestres.size(); j++) {
                 if (bimestres.get(j).getNumero() == i) {
                     suma = suma + bimestres.get(j).getPrecioUnitario();
