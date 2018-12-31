@@ -103,20 +103,21 @@ public class BimestreController {
 
 
             juego=juegoService.obtenerJuego(bimestre.getCodigo());
-            empresas=empresaService.listarEmpresasPorCodigoJuegoActualizandoDatos(bimestre.getCodigo(),juego.getMercado());
             juego.calcular(empresas);
             juegoService.update(juego);
+            empresas=empresaService.listarEmpresasPorCodigoJuegoActualizandoDatos(bimestre.getCodigo(),juego.getMercado());
             juego=juegoService.obtenerJuego(bimestre.getCodigo());
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             empresa.calcularPorcentajeMercado(juego.getMercado());
             empresaService.update(empresa);
             empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
-            juego.calcularMercadoDesatendido(empresas);
+            //juego.calcularMercadoDesatendido(empresas);
 
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+empresa.getNombre()+bimestre.getCodigo());
             visionGeneral.calcular(empresa.getCantidadRealVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
             visionGeneralService.update(visionGeneral);
+            visionGeneralService.actualizarPorcentajesMercado(bimestre.getCodigo(),empresas);
             Produccion produccion=produccionService.obtenerProduccion("PR"+empresa.getNombre()+bimestre.getCodigo());
             produccion.setNumero(bimestre.getNumero());
             //corregir list

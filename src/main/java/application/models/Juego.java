@@ -128,8 +128,7 @@ public class Juego {
             this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getCantidadRealVendida();
         }
         this.mercadoDesatendido=this.mercado- this.mercadoDesatendido;
-        this.porcentajeMercadoDesatendido=(this.mercadoDesatendido/this.mercado)*100;
-
+        this.porcentajeMercadoDesatendido=Math.round((this.mercadoDesatendido*100)/this.mercado);
     }
 
     //segundo
@@ -139,7 +138,7 @@ public class Juego {
             this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getCantidadRealVendida();
         }
         this.mercadoDesatendido=this.mercado- this.mercadoDesatendido;
-        this.porcentajeMercadoDesatendido=(this.mercadoDesatendido/this.mercado)*100;
+        this.porcentajeMercadoDesatendido=(this.mercadoDesatendido*100)/this.mercado;
     }
 
     public int getMercado() {

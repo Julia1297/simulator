@@ -5,21 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/Juego.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/Juego.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/Produccion.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/Produccion.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/Ventas.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/Ventas.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/VentasIndustria.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/VentasIndustria.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/services/EmpresaService.java" afterPath="$PROJECT_DIR$/src/main/java/application/services/EmpresaService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" afterPath="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" />
       <change beforePath="$PROJECT_DIR$/target/classes/application/controllers/BimestreController.class" afterPath="$PROJECT_DIR$/target/classes/application/controllers/BimestreController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/Empresa.class" afterPath="$PROJECT_DIR$/target/classes/application/models/Empresa.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/EstadoResultados.class" afterPath="$PROJECT_DIR$/target/classes/application/models/EstadoResultados.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/Juego.class" afterPath="$PROJECT_DIR$/target/classes/application/models/Juego.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/Produccion.class" afterPath="$PROJECT_DIR$/target/classes/application/models/Produccion.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/Ventas.class" afterPath="$PROJECT_DIR$/target/classes/application/models/Ventas.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/VentasIndustria.class" afterPath="$PROJECT_DIR$/target/classes/application/models/VentasIndustria.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/VisionGeneral.class" afterPath="$PROJECT_DIR$/target/classes/application/models/VisionGeneral.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/services/EmpresaService.class" afterPath="$PROJECT_DIR$/target/classes/application/services/EmpresaService.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,11 +37,9 @@
       <file leaf-file-name="Produccion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Produccion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
+            <state relative-caret-position="527">
               <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
-                <element signature="method#setProduccionIndustriaValorAnterior#0;class#Produccion#0" expanded="false" />
-                <element signature="method#setCosteMedioTotalAnterior#0;class#Produccion#0" expanded="false" />
                 <element signature="e#3661#3662#0" expanded="true" />
                 <element signature="e#3705#3706#0" expanded="true" />
                 <element signature="e#3896#3897#0" expanded="true" />
@@ -65,16 +52,9 @@
       <file leaf-file-name="Juego.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Juego.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="132" column="5" lean-forward="false" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
-              <folding>
-                <element signature="e#3730#3731#0" expanded="true" />
-                <element signature="e#3760#3761#0" expanded="true" />
-                <element signature="e#3803#3804#0" expanded="true" />
-                <element signature="e#3841#3842#0" expanded="true" />
-                <element signature="e#3893#3894#0" expanded="true" />
-                <element signature="e#3944#3945#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="130" column="52" lean-forward="true" selection-start-line="130" selection-start-column="52" selection-end-line="130" selection-end-column="52" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,9 +62,22 @@
       <file leaf-file-name="BimestreController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+            <state relative-caret-position="271">
+              <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VisionGeneralService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="47" column="103" lean-forward="false" selection-start-line="47" selection-start-column="103" selection-end-line="47" selection-end-column="103" />
+              <folding>
+                <element signature="e#2310#2311#0" expanded="true" />
+                <element signature="e#2350#2351#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,8 +85,8 @@
       <file leaf-file-name="EstadoResultados.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2006">
-              <caret line="180" column="47" lean-forward="false" selection-start-line="180" selection-start-column="47" selection-end-line="180" selection-end-column="47" />
+            <state relative-caret-position="17">
+              <caret line="168" column="49" lean-forward="true" selection-start-line="168" selection-start-column="49" selection-end-line="168" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -102,8 +95,8 @@
       <file leaf-file-name="Empresa.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Empresa.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1989">
-              <caret line="159" column="55" lean-forward="false" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
+            <state relative-caret-position="337">
+              <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -112,8 +105,8 @@
       <file leaf-file-name="VisionGeneral.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="76" column="5" lean-forward="false" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+            <state relative-caret-position="17">
+              <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -142,12 +135,9 @@
       <file leaf-file-name="EmpresaService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/services/EmpresaService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="59" column="24" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-              <folding>
-                <element signature="e#2218#2219#0" expanded="true" />
-                <element signature="e#2252#2253#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="134">
+              <caret line="64" column="51" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -179,21 +169,21 @@
         <option value="$PROJECT_DIR$/src/main/java/application/services/CostosProduccionService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/Bimestre.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/JuegoService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/VentasIndustriaService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/ProduccionService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/BimestreService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/cloudant" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/EstadoResultadosService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/Ventas.java" />
-        <option value="$PROJECT_DIR$/src/main/java/application/models/Juego.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/VentasIndustria.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/Produccion.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" />
-        <option value="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/EmpresaService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/application/models/Juego.java" />
+        <option value="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" />
       </list>
     </option>
   </component>
@@ -227,7 +217,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -522,7 +512,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107895000" />
+    <option name="totallyTimeSpent" value="112900000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -534,7 +524,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -553,9 +544,9 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.426146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.426146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4074703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4074703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22844176" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -605,13 +596,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Juego.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Empresa.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -688,8 +672,6 @@
         <state relative-caret-position="221">
           <caret line="13" column="37" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
           <folding>
-            <element signature="method#setProduccionIndustriaValorAnterior#0;class#Produccion#0" expanded="false" />
-            <element signature="method#setCosteMedioTotalAnterior#0;class#Produccion#0" expanded="false" />
             <element signature="e#3661#3662#0" expanded="true" />
             <element signature="e#3705#3706#0" expanded="true" />
             <element signature="e#3896#3897#0" expanded="true" />
@@ -846,13 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="33" column="91" lean-forward="false" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VentasIndustriaService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -918,29 +893,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="76" column="5" lean-forward="false" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Empresa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="159" column="55" lean-forward="false" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Produccion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
+        <state relative-caret-position="527">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <element signature="method#setProduccionIndustriaValorAnterior#0;class#Produccion#0" expanded="false" />
-            <element signature="method#setCosteMedioTotalAnterior#0;class#Produccion#0" expanded="false" />
             <element signature="e#3661#3662#0" expanded="true" />
             <element signature="e#3705#3706#0" expanded="true" />
             <element signature="e#3896#3897#0" expanded="true" />
@@ -949,44 +906,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/controllers/ControllerExceptionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2006">
-          <caret line="180" column="47" lean-forward="false" selection-start-line="180" selection-start-column="47" selection-end-line="180" selection-end-column="47" />
+        <state relative-caret-position="102">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Juego.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="132" column="5" lean-forward="false" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
-          <folding>
-            <element signature="e#3730#3731#0" expanded="true" />
-            <element signature="e#3760#3761#0" expanded="true" />
-            <element signature="e#3803#3804#0" expanded="true" />
-            <element signature="e#3841#3842#0" expanded="true" />
-            <element signature="e#3893#3894#0" expanded="true" />
-            <element signature="e#3944#3945#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/services/EmpresaService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="59" column="24" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+        <state relative-caret-position="134">
+          <caret line="64" column="51" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="168" column="49" lean-forward="true" selection-start-line="168" selection-start-column="49" selection-end-line="168" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="47" column="103" lean-forward="false" selection-start-line="47" selection-start-column="103" selection-end-line="47" selection-end-column="103" />
           <folding>
-            <element signature="e#2218#2219#0" expanded="true" />
-            <element signature="e#2252#2253#0" expanded="true" />
+            <element signature="e#2310#2311#0" expanded="true" />
+            <element signature="e#2350#2351#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Juego.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="130" column="52" lean-forward="true" selection-start-line="130" selection-start-column="52" selection-end-line="130" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Empresa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        <state relative-caret-position="271">
+          <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
           <folding />
         </state>
       </provider>
