@@ -9,7 +9,7 @@ public class VisionGeneral {
     private double ventas;
     private double beneficio;
     private int precioUnitario;
-    private double porcentajeDeMercado;
+    private int porcentajeDeMercado;
     private String codigoVision;
 
     public String get_id() {
@@ -60,16 +60,16 @@ public class VisionGeneral {
         this.precioUnitario = precioUnitario;
     }
 
-    public double getPorcentajeDeMercado() {
+    public int getPorcentajeDeMercado() {
         return porcentajeDeMercado;
     }
 
-    public void setPorcentajeDeMercado(double porcentajeDeMercado) {
+    public void setPorcentajeDeMercado(int porcentajeDeMercado) {
         this.porcentajeDeMercado = porcentajeDeMercado;
     }
 
-    public void calcular(double cantidadVendida, int produccion, int utilidadNeta, int precioUnitario, double porcentajeDeMercado){
-        this.ventas=  Math.min(cantidadVendida,produccion);
+    public void calcular(int cantidadReal, int produccion, int utilidadNeta, int precioUnitario, int porcentajeDeMercado){
+        this.ventas=  cantidadReal;
         this.beneficio=utilidadNeta;
         this.precioUnitario=precioUnitario;
         this.porcentajeDeMercado=porcentajeDeMercado;

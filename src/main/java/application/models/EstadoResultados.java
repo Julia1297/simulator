@@ -170,11 +170,11 @@ public class EstadoResultados {
         this.utilidadNeta = utilidadNeta;
     }
 
-    public void calcular(int ventasRealizadasMonetario,int materiaPrima,int manoObra,int costosIndirectos,int inversionMarketing,int inversionInvestigacion, int inversionEnActivos){
+    public void calcular(int ventasRealizadasMonetario,int materiaPrima,int manoObra,int costosIndirectos,int inversionMarketing,int inversionInvestigacion, int inversionEnActivos, int utilidadNetaAnterior ){
         this.ventas=ventasRealizadasMonetario;
         this.otrosIngresos=10000;
         //utilidad neta
-        this.capitalAnterior=10000;
+        this.capitalAnterior=utilidadNetaAnterior;
         this.ingresos=this.ventas+this.otrosIngresos+this.capitalAnterior;
         this.materiaPrima=materiaPrima;
         this.manoObra=manoObra;
@@ -183,7 +183,7 @@ public class EstadoResultados {
         this.utilidadBruta=this.ingresos-this.costos;
         this.inversionMarketing=inversionMarketing;
         this.inversionInvestigacion=inversionInvestigacion;
-        this.inversionActivos=inversionActivos;
+        this.inversionActivos=inversionEnActivos;
         this.gastosOperativos=this.inversionActivos+this.inversionInvestigacion+this.inversionMarketing;
         this.utilidadNeta=this.utilidadBruta-this.gastosOperativos;
 

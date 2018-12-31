@@ -49,7 +49,13 @@ public class BimestreController {
             CostosProduccion costosProduccion=new CostosProduccion();
             EstadoResultados estadoResultados=new EstadoResultados();
             Ventas ventas=new Ventas();
-            int ventasUnidades=0;
+            Empresa empresa;
+            List<Empresa> empresas;
+            Juego juego;
+            Ventas ventasAnterior;
+            EstadoResultados estadoResultadosAnterior;
+
+
 
             bimestre.set_id("bimestre"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             balanceGeneral.set_id("BG"+bimestre.getNombreEmpresa()+bimestre.getNumero());
@@ -61,42 +67,55 @@ public class BimestreController {
             ventas.setCodigo(bimestre.getCodigo());
 
 
-            if(bimestre.getNumero()!=0) {
-            //COSTOS PRODUCCION
-                costosProduccion.calcular(bimestre.getProduccion());
-                //VENTAS
+            int ventasUnidades=0;
+            int utilidadNeta=10000;
+            if(bimestre.getNumero()!=0){
                 String numeroBimestreAnterior= String.valueOf((bimestre.getNumero() - 1));
-                Ventas ventasAnterior=ventasService.obtenerVentas("V"+bimestre.getNombreEmpresa()+numeroBimestreAnterior);
+                ventasAnterior = ventasService.obtenerVentas("V" + bimestre.getNombreEmpresa() + numeroBimestreAnterior);
+                estadoResultadosAnterior=estadoResultadosService.obtenerEstadoResultado("ER"+bimestre.getNombreEmpresa()+numeroBimestreAnterior);
                 ventasUnidades=ventasAnterior.getInventarioUnidades();
-                ventas.calcular(bimestre.getProduccion(),costosProduccion.getCostoUnitario(),ventasAnterior.getInventarioUnidades(),bimestre.getPrecioUnitario());
-                //ESTADO RESULTADOS
-                estadoResultados.calcular(ventas.getVentasRealizadasMonetario(),costosProduccion.getMateriaPrima(),costosProduccion.getManoDeObraDirecta(),costosProduccion.getCostosIndirectos(),bimestre.getInversionEnMarketing(),bimestre.getInversionEnInvestigacion(),bimestre.getInversionEnActivos());
-                //BALANCE GENERAL
-                balanceGeneral.calcular(estadoResultados.getUtilidadBruta(),bimestre.getPrecioUnitario(),ventas.getInventarioUnidades(),estadoResultados.getUtilidadNeta());
+                utilidadNeta=estadoResultadosAnterior.getUtilidadNeta();
             }
+
+            //COSTOS PRODUCCION
+            costosProduccion.calcular(bimestre.getProduccion());
+            //Para ventas
+            empresa=empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+""+bimestre.getCodigo()) ;
+            empresa.setProduccion(bimestre.getProduccion());
+            empresaService.update(empresa);
+            empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
+            empresa=empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+""+bimestre.getCodigo()) ;
+            empresa.calcular(empresas,bimestre.getPrecioUnitario(),bimestre.getInversionEnMarketing(),bimestre.getInversionEnInvestigacion(),bimestre.getInversionEnActivos(),ventasUnidades);
+            empresaService.update(empresa);
+
+            //VENTAS
+            ventas.calcular(bimestre.getProduccion(),costosProduccion.getCostoUnitario(),ventasUnidades,bimestre.getPrecioUnitario(),empresa.getCantidadRealVendida());
+            //ESTADO RESULTADOS
+            estadoResultados.calcular(ventas.getVentasRealizadasMonetario(),costosProduccion.getMateriaPrima(),costosProduccion.getManoDeObraDirecta(),costosProduccion.getCostosIndirectos(),bimestre.getInversionEnMarketing(),bimestre.getInversionEnInvestigacion(),bimestre.getInversionEnActivos(),utilidadNeta);
+            //BALANCE GENERAL
+            balanceGeneral.calcular(estadoResultados.getUtilidadBruta(),bimestre.getPrecioUnitario(),ventas.getInventarioUnidades(),estadoResultados.getUtilidadNeta());
+
             bimestreService.save(bimestre);
             costosProduccionService.save(costosProduccion);
             ventasService.save(ventas);
             estadoResultadosService.save(estadoResultados);
             balanceGeneralService.save(balanceGeneral);
 
-            //corregir
-            Juego juego=juegoService.obtenerJuego(bimestre.getCodigo());
-            List<Empresa> empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
-            Empresa empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
-            empresa.calcularCantidadVendida(empresas,bimestre.getPrecioUnitario());
-            empresaService.update(empresa);
-            //revisas empresas
-            empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
-            juego.calcularMercadoCubierto(empresas);
+
+            juego=juegoService.obtenerJuego(bimestre.getCodigo());
+            empresas=empresaService.listarEmpresasPorCodigoJuegoActualizandoDatos(bimestre.getCodigo(),juego.getMercado());
+            juego.calcular(empresas);
+            juegoService.update(juego);
+            juego=juegoService.obtenerJuego(bimestre.getCodigo());
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
-            empresa.calcularPorcentajeMercado(bimestre.getProduccion(),ventasUnidades,juego.getMercadoCubierto());
+            empresa.calcularPorcentajeMercado(juego.getMercado());
             empresaService.update(empresa);
             empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
             juego.calcularMercadoDesatendido(empresas);
 
+            empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+empresa.getNombre()+bimestre.getCodigo());
-            visionGeneral.calcular(empresa.getCantidadVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
+            visionGeneral.calcular(empresa.getCantidadRealVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
             visionGeneralService.update(visionGeneral);
             Produccion produccion=produccionService.obtenerProduccion("PR"+empresa.getNombre()+bimestre.getCodigo());
             produccion.setNumero(bimestre.getNumero());

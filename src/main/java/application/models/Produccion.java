@@ -8,11 +8,11 @@ public class Produccion {
     private String _id = null;
     private String _rev = null;
 
-    private int produccionIndustriaValorActual;
+    private int produccionIndustriaValorActual=2500;
     private int produccionIndustriaValorAnterior;
-    private double costeMedioTotalActual=0;
+    private double costeMedioTotalActual=48270;
     private double costeMedioTotalAnterior;
-    private double costeMedioUnitarioActual=0;
+    private double costeMedioUnitarioActual=94.54;
     private double costeMedioUnitarioAnterior;
     private String nombreEmpresaProduccion;
     private String codigo;
@@ -86,11 +86,11 @@ public class Produccion {
         this.produccionIndustriaValorActual=suma;
         suma=0;
         for(int i=0;i<costosProduccionList.size();i++){
-            this.setCosteMedioTotalActual(this.getCosteMedioTotalActual() +costosProduccionList.get(i).getCostoTotal());
-            this.setCosteMedioUnitarioActual(this.getCosteMedioUnitarioActual() +costosProduccionList.get(i).getCostoUnitario());
+            this.costeMedioTotalActual=this.costeMedioTotalActual+costosProduccionList.get(i).getCostoTotal();
+            this.costeMedioUnitarioActual=this.costeMedioUnitarioActual +costosProduccionList.get(i).getCostoUnitario();
         }
-        this.setCosteMedioTotalActual(this.getCosteMedioTotalActual() /costosProduccionList.size());
-        this.setCosteMedioUnitarioActual(this.getCosteMedioUnitarioActual() /costosProduccionList.size());
+        this.costeMedioTotalActual=this.costeMedioTotalActual /costosProduccionList.size();
+        this.costeMedioUnitarioActual=this.costeMedioUnitarioActual /costosProduccionList.size();
     }
 
     public void cambiarActualAnterior(){

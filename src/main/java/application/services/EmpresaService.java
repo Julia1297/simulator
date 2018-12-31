@@ -53,6 +53,21 @@ public class EmpresaService {
         else
             return  estadoResultados;
     }
+    public List<Empresa> listarEmpresasPorCodigoJuegoActualizandoDatos(String codigo, int mercado){
+        QueryResult<Empresa> queryResult = db.query(new QueryBuilder(eq("codigoJuego",codigo)).build(), Empresa.class);
+        List<Empresa> estadoResultados =  queryResult.getDocs();
+        if(estadoResultados.size()==0)
+            return null;
+        else{
+            for(int i=0;i<estadoResultados.size();i++)
+            {
+                estadoResultados.get(i).calcularPorcentajeMercado(mercado);
+                db.update(estadoResultados.get(i));
+            }
+            return  estadoResultados;
+
+        }
+    }
     public  void update(Empresa empresa) {
         db.update(empresa);
     }
