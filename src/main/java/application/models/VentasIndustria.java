@@ -9,16 +9,16 @@ public class VentasIndustria {
     private String nombreEmpresaVentasI;
 
 
-    private int ventasIndustriaUnidadesActual;
+    private int ventasIndustriaUnidadesActual=2500;
     private int ventasIndustriaUnidadesAnterior;
 
-    private double ventasIndustriaMonetarioActual;
+    private double ventasIndustriaMonetarioActual=375000;
     private double ventasIndustriaMonetarioAnterior;
 
-    private  double precioUnitarioPromedioActual;
+    private  double precioUnitarioPromedioActual=150;
     private  double precioUnitarioPromedioAnterior;
 
-    private double inventarioPromediosActual;
+    private double inventarioPromediosActual=25;
     private double invetarioPromediosAnterior;
 
     private int numero;

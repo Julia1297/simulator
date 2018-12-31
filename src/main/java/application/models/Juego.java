@@ -12,8 +12,13 @@ public class Juego {
     private String empresa4_id;
     private String empresa5_id;
     private  int cantidadEmpresa=1;
-    private double mercadoCubierto;
-    private double mercadoDesatendido;
+
+
+    //
+    private int mercado=2675;
+    private int mercadoDesatendido=175;
+    private int porcentajeMercadoDesatendido;
+
 
     private String moderador_id;
 
@@ -90,26 +95,19 @@ public class Juego {
     }
 
 
-    public double getMercadoDesatendido() {
+    public int getMercadoDesatendido() {
         return mercadoDesatendido;
     }
 
-    public void setMercadoDesatendido(double mercadoDesatendido) {
+    public void setMercadoDesatendido(int mercadoDesatendido) {
 
         this.mercadoDesatendido = mercadoDesatendido;
     }
 
-    public double getMercadoCubierto() {
-        return mercadoCubierto;
-    }
 
-    public void setMercadoCubierto(double mercadoCubierto) {
 
-        this.mercadoCubierto = mercadoCubierto;
-    }
-
-    public  void calcularMercadoCubierto(List<Empresa> empresaList){
-        this.mercadoCubierto=0;
+    public  void calcular(List<Empresa> empresaList){
+/*        this.mercadoCubierto=0;
         System.out.println();
         System.out.println(empresaList.size());
         for(int i=0;i<empresaList.size();i++){
@@ -120,15 +118,42 @@ public class Juego {
 
         }
         System.out.println("mercado:");
-        System.out.println(mercadoCubierto);
+        System.out.println(mercadoCubierto);*/
+        this.mercado=0;
+        for(int i=0;i<empresaList.size();i++){
+            this.mercado=this.mercado+empresaList.get(i).getCantidadIdealTotal();
+        }
+        this.mercadoDesatendido=0;
+        for(int i=0;i<empresaList.size();i++){
+            this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getCantidadRealVendida();
+        }
+        this.mercadoDesatendido=this.mercado- this.mercadoDesatendido;
+        this.porcentajeMercadoDesatendido=Math.round((this.mercadoDesatendido*100)/this.mercado);
     }
 
     //segundo
     public  void calcularMercadoDesatendido(List<Empresa> empresaList){
-        this.mercadoCubierto=0;
+        this.mercadoDesatendido=0;
         for(int i=0;i<empresaList.size();i++){
-            this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getPorcentajeDeMercado();
+            this.mercadoDesatendido=this.mercadoDesatendido+empresaList.get(i).getCantidadRealVendida();
         }
-        this.mercadoDesatendido=this.mercadoCubierto- this.mercadoDesatendido;
+        this.mercadoDesatendido=this.mercado- this.mercadoDesatendido;
+        this.porcentajeMercadoDesatendido=(this.mercadoDesatendido*100)/this.mercado;
+    }
+
+    public int getMercado() {
+        return mercado;
+    }
+
+    public void setMercado(int mercado) {
+        this.mercado = mercado;
+    }
+
+    public int getPorcentajeMercadoDesatendido() {
+        return porcentajeMercadoDesatendido;
+    }
+
+    public void setPorcentajeMercadoDesatendido(int porcentajeMercadoDesatendido) {
+        this.porcentajeMercadoDesatendido = porcentajeMercadoDesatendido;
     }
 }

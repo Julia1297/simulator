@@ -12,13 +12,19 @@ public class Empresa {
     private String user_id;
     private String bimestre1_id;
     private String bimestre2_id;
-    private String bimestre3_id="y";
+    private String bimestre3_id;
     private int numeroBimestre=1;
     private double cantidadVendida;
     private double cantidadVendidaAnterior=500;
-    private double porcentajeDeMercado;
+    private int porcentajeDeMercado;
     private String codigoJuego;
 
+
+    //nuevos
+    private int cantidadIdeal=500;
+    private int cantidadIdealTotal=535;
+    private int produccion=500;
+    private int cantidadRealVendida=500;
 
 
 
@@ -95,15 +101,29 @@ public class Empresa {
         this.cantidadVendida = cantidadVendida;
     }
 
-    public double getPorcentajeDeMercado() {
+    public int getPorcentajeDeMercado() {
         return porcentajeDeMercado;
     }
 
-    public void setPorcentajeDeMercado(double porcentajeDeMercado) {
+    public void setPorcentajeDeMercado(int porcentajeDeMercado) {
         this.porcentajeDeMercado = porcentajeDeMercado;
     }
-    public void calcularCantidadVendida(List<Empresa> empresaList,int precioUnitario){
-        double suma=0;
+    public int obtenerPorcentaje(int investigacion){
+        if(investigacion==0)
+            return 0;
+        if(investigacion==1500)
+            return (int) (0.1*this.cantidadIdeal);
+        if(investigacion==3000)
+            return (int) (0.3*this.cantidadIdeal);
+        if(investigacion==4500)
+            return (int) (0.5*this.cantidadIdeal);
+        if(investigacion==6000)
+            return (int) (0.7*this.cantidadIdeal);
+        return 0;
+    }
+   //guardar produccion en empresa
+    public void calcular(List<Empresa> empresaList,int precioUnitario,int marketing,int investigacion, int activos, int inventarioUnidadesAnterior){
+       /* double suma=0;
         for(int i=0;i<empresaList.size();i++){
             if(empresaList.get(i).get_id()!=this._id);
                 suma=suma+empresaList.get(i).getCantidadVendidaAnterior();
@@ -113,8 +133,19 @@ public class Empresa {
         this.cantidadVendida=((337.5-precioUnitario)/0.18)-suma;
         cantidadVendida=(double) Math.round(cantidadVendida*100)/100;
         System.out.println(this.cantidadVendida);
-        this.cantidadVendidaAnterior=this.cantidadVendida;
+        this.cantidadVendidaAnterior=this.cantidadVendida;*/
+       int suma=0;
+       for (int i=0;i<empresaList.size();i++){
+           if(empresaList.get(i).get_id()!=this._id)
+               suma=suma+empresaList.get(i).getProduccion();
+       }
+       suma=suma/2;
+       this.cantidadIdeal= (int) (((337.5-precioUnitario)/0.125)-suma);
+       this.cantidadIdealTotal=this.cantidadIdeal+obtenerPorcentaje(marketing)+obtenerPorcentaje(investigacion)+obtenerPorcentaje(activos);
+       this.cantidadRealVendida=Math.min(cantidadIdealTotal,produccion+inventarioUnidadesAnterior);
+
     }
+
 
     public double getCantidadVendidaAnterior() {
         return cantidadVendidaAnterior;
@@ -124,12 +155,10 @@ public class Empresa {
         this.cantidadVendidaAnterior = cantidadVendidaAnterior;
     }
 
-    public void calcularPorcentajeMercado(int produccion, int inventarioUnidadesAnterior, double mercado){
-        double res=produccion+inventarioUnidadesAnterior;
-        res = Math.min(this.cantidadVendida, res);
-        porcentajeDeMercado=res/mercado;
-
-
+    public void calcularPorcentajeMercado( int mercado){
+        System.out.println(mercado);
+        System.out.println(Math.round((this.cantidadRealVendida*100)/mercado));
+        this.porcentajeDeMercado=Math.round((this.cantidadRealVendida*100)/mercado);
     }
 
 
@@ -139,5 +168,39 @@ public class Empresa {
 
     public void setCodigoJuego(String codigoJuego) {
         this.codigoJuego = codigoJuego;
+    }
+
+    public int getCantidadIdeal() {
+        return cantidadIdeal;
+    }
+
+    public void setCantidadIdeal(int cantidadIdeal) {
+        this.cantidadIdeal = cantidadIdeal;
+    }
+
+    public int getCantidadIdealTotal() {
+        return cantidadIdealTotal;
+    }
+
+    public void setCantidadIdealTotal(int cantidadIdealTotal) {
+        this.cantidadIdealTotal = cantidadIdealTotal;
+    }
+
+    public int getProduccion() {
+        return produccion;
+    }
+
+    public void setProduccion(int produccion) {
+        this.produccion = produccion;
+    }
+
+
+
+    public int getCantidadRealVendida() {
+        return cantidadRealVendida;
+    }
+
+    public void setCantidadRealVendida(int cantidadRealVendida) {
+        this.cantidadRealVendida = cantidadRealVendida;
     }
 }

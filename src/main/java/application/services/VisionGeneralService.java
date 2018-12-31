@@ -1,5 +1,6 @@
 package application.services;
 
+import application.models.Empresa;
 import application.models.VisionGeneral;
 import com.cloudant.client.api.Database;
 import com.cloudant.client.api.query.QueryBuilder;
@@ -38,6 +39,21 @@ public class VisionGeneralService {
         else
             return  visionGeneralList;
     }
+
+    public void actualizarPorcentajesMercado(String codigo, List<Empresa> empresaList){
+        QueryResult<VisionGeneral> queryResult = db.query(new QueryBuilder(eq("codigoVision", codigo)).build(), VisionGeneral.class);
+        List<VisionGeneral> visionGeneralList =  queryResult.getDocs();
+        for(int i=0;i<empresaList.size();i++){
+            for(int j=0;j<visionGeneralList.size();j++){
+                if((empresaList.get(i).getNombre()).equals(visionGeneralList.get(j).getNombreEmpresa())){
+                    visionGeneralList.get(j).setPorcentajeDeMercado(empresaList.get(i).getPorcentajeDeMercado());
+                    db.update(visionGeneralList.get(j));
+                }
+            }
+        }
+
+    }
+
     public void save(VisionGeneral visionGeneral ){
 
         db.save(visionGeneral);
