@@ -2,6 +2,7 @@
 package application.services;
 
 
+import application.models.Empresa;
 import application.models.EstadoResultados;
 
 import com.cloudant.client.api.Database;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Expression.in;
 import static com.cloudant.client.api.query.Operation.and;
 
 @Service
@@ -22,7 +24,6 @@ public class EstadoResultadosService {
 
     @Autowired
     public EstadoResultadosService(Database db) {
-
         this.db = db;
     }
 
@@ -55,24 +56,43 @@ public class EstadoResultadosService {
         return  estadoResultadosList;
     }
 
-    public List<Double> promedioUtilidadNetaEmpresas(String codigo) {
-        QueryResult<EstadoResultados> queryResult = db.query(new QueryBuilder(eq("codigo", codigo)).build(), EstadoResultados.class);
-        List<EstadoResultados> bimestres = queryResult.getDocs();
+    public List<Double> promedioUtilidadNetaEmpresas(List<Empresa> empresas, String nombreEmpresa) {
+        QueryResult<EstadoResultados> queryResult=db.query(new QueryBuilder(eq("empresa", nombreEmpresa)).build(), EstadoResultados.class);
+        List<EstadoResultados> estadoResultadosListMiEmpresa=queryResult.getDocs();
+        List<EstadoResultados> resultadosList;
         int suma = 0;
         int cantidad = 0;
+        int indice=0;
         List<Double> promedios = new ArrayList<>();
 
-        for (int i = 1; i < 4; i++) {
-            for (int j = 0; j < bimestres.size(); j++) {
-                if (bimestres.get(j).getNumero() == i) {
-                    suma = suma + bimestres.get(j).getUtilidadNeta();
-                    cantidad++;
+
+        for (int i = 1; i < estadoResultadosListMiEmpresa.size(); i++) {
+
+
+            for (int j = 0; j < empresas.size(); j++) {
+                if (!empresas.get(j).getNombre().equals(nombreEmpresa)) {
+                    queryResult=db.query(new QueryBuilder(eq("empresa", empresas.get(j).getNombre())).build(), EstadoResultados.class);
+                    resultadosList=queryResult.getDocs();
+                    if(i<resultadosList.size() && resultadosList.get(i).getNumero()==i) {
+           /*             System.out.println(resultadosList.get(i).getEmpresa());
+                        System.out.println(resultadosList.get(i).getUtilidadNeta());*/
+                        suma = suma + resultadosList.get(i).getUtilidadNeta();
+                        cantidad++;
+                    }
+
                 }
             }
-            suma = suma / cantidad;
+/*
+            System.out.println("siii");
+            System.out.println(suma);
+        System.out.println(cantidad);
+*/
+            if(cantidad!=0)
+                suma = suma / cantidad;
             promedios.add((double) suma);
             suma = 0;
             cantidad = 0;
+
         }
         return  promedios;
     }

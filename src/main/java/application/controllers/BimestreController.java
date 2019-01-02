@@ -64,6 +64,7 @@ public class BimestreController {
             ventas.set_id("V"+bimestre.getNombreEmpresa()+bimestre.getNumero());
             estadoResultados.setEmpresa(bimestre.getNombreEmpresa());
             estadoResultados.setCodigo(bimestre.getCodigo());
+            estadoResultados.setNumero(bimestre.getNumero());
             ventas.setCodigo(bimestre.getCodigo());
 
 
@@ -110,7 +111,7 @@ public class BimestreController {
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             empresa.calcularPorcentajeMercado(juego.getMercado());
             empresaService.update(empresa);
-            empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
+            //empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
             //juego.calcularMercadoDesatendido(empresas);
 
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
@@ -136,11 +137,7 @@ public class BimestreController {
 
         }
     }
-    @GetMapping(value="/estadoResultados/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public EstadoResultados getEstadoResultados(@PathVariable String id) throws Exception {
-        return estadoResultadosService.obtenerEstadoResultado(id);
-    }
+
 
     @GetMapping(value="/balanceGeneral/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -171,10 +168,10 @@ public class BimestreController {
         return bimestreService.promedioPrecioUnitarioEmpresas(codigo);
     }
 
-    @GetMapping(value="/utilidadNetaBimestres/{codigo}")
+    @GetMapping(value="/utilidadNetaBimestres/{codigo}/{empresa}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Double> getUtilidadNetaBimestres(@PathVariable String codigo) throws Exception {
-        return estadoResultadosService.promedioUtilidadNetaEmpresas(codigo);
+    public List<Double> getUtilidadNetaBimestres(@PathVariable String codigo, @PathVariable String empresa) throws Exception {
+        return estadoResultadosService.promedioUtilidadNetaEmpresas(empresaService.listarEmpresasPorCodigoJuego(codigo),empresa);
     }
 
     @GetMapping(value="/ventasIndustria/{id}")

@@ -158,7 +158,7 @@ public class Empresa {
     public void calcularPorcentajeMercado( int mercado){
         System.out.println(mercado);
         System.out.println(Math.round((this.cantidadRealVendida*100)/mercado));
-        this.porcentajeDeMercado=Math.round((this.cantidadRealVendida*100)/mercado);
+        this.porcentajeDeMercado= (int) Math.ceil((this.cantidadRealVendida*100)/mercado);
     }
 
 
