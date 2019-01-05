@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
+import static com.cloudant.client.api.query.Operation.and;
 
 @Service
 public class VisionGeneralService {
@@ -31,17 +32,18 @@ public class VisionGeneralService {
             return visionGeneralList.get(0);
     }
 
-    public List<VisionGeneral> listarVisionesGeneralesJuego(String codigo){
-        QueryResult<VisionGeneral> queryResult = db.query(new QueryBuilder(eq("codigoVision", codigo)).build(), VisionGeneral.class);
+    public List<VisionGeneral> listarVisionesGeneralesJuegoNumeroBimestre(String codigo, int numero){
+        QueryResult<VisionGeneral> queryResult = db.query(new QueryBuilder(and(eq("codigoVision", codigo),eq("numeroVision",numero))).build(), VisionGeneral.class);
         List<VisionGeneral> visionGeneralList =  queryResult.getDocs();
         if(visionGeneralList.size()==0)
             return null;
         else
             return  visionGeneralList;
+
     }
 
-    public void actualizarPorcentajesMercado(String codigo, List<Empresa> empresaList){
-        QueryResult<VisionGeneral> queryResult = db.query(new QueryBuilder(eq("codigoVision", codigo)).build(), VisionGeneral.class);
+    public void actualizarPorcentajesMercado(String codigo, int numero, List<Empresa> empresaList){
+        QueryResult<VisionGeneral> queryResult = db.query(new QueryBuilder(and(eq("codigoVision", codigo),eq("numeroVision",numero))).build(), VisionGeneral.class);
         List<VisionGeneral> visionGeneralList =  queryResult.getDocs();
         for(int i=0;i<empresaList.size();i++){
             for(int j=0;j<visionGeneralList.size();j++){

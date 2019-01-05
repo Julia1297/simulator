@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
-import static com.cloudant.client.api.query.Expression.in;
 import static com.cloudant.client.api.query.Operation.and;
 
 @Service
@@ -73,7 +72,7 @@ public class EstadoResultadosService {
                 if (!empresas.get(j).getNombre().equals(nombreEmpresa)) {
                     queryResult=db.query(new QueryBuilder(eq("empresa", empresas.get(j).getNombre())).build(), EstadoResultados.class);
                     resultadosList=queryResult.getDocs();
-                    if(i<resultadosList.size() && resultadosList.get(i).getNumero()==i) {
+                    if(i<resultadosList.size() && resultadosList.get(i).getNumeroEstado()==i) {
            /*             System.out.println(resultadosList.get(i).getEmpresa());
                         System.out.println(resultadosList.get(i).getUtilidadNeta());*/
                         suma = suma + resultadosList.get(i).getUtilidadNeta();
@@ -95,5 +94,21 @@ public class EstadoResultadosService {
 
         }
         return  promedios;
+    }
+
+
+    public boolean unicaEmpresaConValorPositivo(String codigo, String nombre, int numero ) {
+        QueryResult<EstadoResultados> queryResult = db.query(new QueryBuilder(and(eq("codigoEstado", codigo),eq("numeroEstado",numero))).build(), EstadoResultados.class);
+        List<EstadoResultados> estadoResultados =  queryResult.getDocs();
+        boolean gano=false;
+        int cantidad=0;
+        for(int i=0;i<estadoResultados.size();i++){
+            if(estadoResultados.get(i).getEmpresa().equals(nombre) && estadoResultados.get(i).getUtilidadNeta()>0) {
+                cantidad++;
+            }
+        }
+        if(cantidad==1)
+            gano=true;
+        return  gano;
     }
 }

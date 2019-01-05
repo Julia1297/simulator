@@ -63,7 +63,9 @@ public class BimestreService {
                     cantidad++;
                 }
             }
-            suma = suma / cantidad;
+
+            if(cantidad!=0)
+                suma = suma / cantidad;
             promedios.add((double) suma);
             suma = 0;
             cantidad = 0;

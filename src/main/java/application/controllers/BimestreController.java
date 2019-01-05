@@ -49,6 +49,7 @@ public class BimestreController {
             CostosProduccion costosProduccion=new CostosProduccion();
             EstadoResultados estadoResultados=new EstadoResultados();
             Ventas ventas=new Ventas();
+            VisionGeneral visionGeneral =new VisionGeneral();
             Empresa empresa;
             List<Empresa> empresas;
             Juego juego;
@@ -57,23 +58,27 @@ public class BimestreController {
 
 
 
-            bimestre.set_id("bimestre"+bimestre.getNombreEmpresa()+bimestre.getNumero());
-            balanceGeneral.set_id("BG"+bimestre.getNombreEmpresa()+bimestre.getNumero());
-            costosProduccion.set_id("CP"+bimestre.getNombreEmpresa()+bimestre.getNumero());
-            estadoResultados.set_id("ER"+bimestre.getNombreEmpresa()+bimestre.getNumero());
-            ventas.set_id("V"+bimestre.getNombreEmpresa()+bimestre.getNumero());
+            bimestre.set_id("bimestre"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
+            balanceGeneral.set_id("BG"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
+            costosProduccion.set_id("CP"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
+            estadoResultados.set_id("ER"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
+            ventas.set_id("V"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
             estadoResultados.setEmpresa(bimestre.getNombreEmpresa());
-            estadoResultados.setCodigo(bimestre.getCodigo());
-            estadoResultados.setNumero(bimestre.getNumero());
+            estadoResultados.setCodigoEstado(bimestre.getCodigo());
+            estadoResultados.setNumeroEstado(bimestre.getNumero());
             ventas.setCodigo(bimestre.getCodigo());
+            visionGeneral.set_id("VG"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
+            visionGeneral.setNombreEmpresa(bimestre.getNombreEmpresa());
+            visionGeneral.setCodigoVision(bimestre.getCodigo());
+            visionGeneral.setNumeroVision(bimestre.getNumero());
 
 
             int ventasUnidades=0;
             int utilidadNeta=10000;
             if(bimestre.getNumero()!=0){
                 String numeroBimestreAnterior= String.valueOf((bimestre.getNumero() - 1));
-                ventasAnterior = ventasService.obtenerVentas("V" + bimestre.getNombreEmpresa() + numeroBimestreAnterior);
-                estadoResultadosAnterior=estadoResultadosService.obtenerEstadoResultado("ER"+bimestre.getNombreEmpresa()+numeroBimestreAnterior);
+                ventasAnterior = ventasService.obtenerVentas("V" + bimestre.getNombreEmpresa() + numeroBimestreAnterior+bimestre.getCodigo());
+                estadoResultadosAnterior=estadoResultadosService.obtenerEstadoResultado("ER"+bimestre.getNombreEmpresa()+numeroBimestreAnterior+bimestre.getCodigo());
                 ventasUnidades=ventasAnterior.getInventarioUnidades();
                 utilidadNeta=estadoResultadosAnterior.getUtilidadNeta();
             }
@@ -101,6 +106,7 @@ public class BimestreController {
             ventasService.save(ventas);
             estadoResultadosService.save(estadoResultados);
             balanceGeneralService.save(balanceGeneral);
+            visionGeneralService.save(visionGeneral);
 
 
             juego=juegoService.obtenerJuego(bimestre.getCodigo());
@@ -111,14 +117,14 @@ public class BimestreController {
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
             empresa.calcularPorcentajeMercado(juego.getMercado());
             empresaService.update(empresa);
-            //empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigo());
+            //empresas=empresaService.listarEmpresasPorCodigoJuego(bimestre.getCodigoEstado());
             //juego.calcularMercadoDesatendido(empresas);
 
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
-            VisionGeneral visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+empresa.getNombre()+bimestre.getCodigo());
+            visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
             visionGeneral.calcular(empresa.getCantidadRealVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
             visionGeneralService.update(visionGeneral);
-            visionGeneralService.actualizarPorcentajesMercado(bimestre.getCodigo(),empresas);
+            visionGeneralService.actualizarPorcentajesMercado(bimestre.getCodigo(),bimestre.getNumero(),empresas);
             Produccion produccion=produccionService.obtenerProduccion("PR"+empresa.getNombre()+bimestre.getCodigo());
             produccion.setNumero(bimestre.getNumero());
             //corregir list
@@ -132,8 +138,12 @@ public class BimestreController {
             ventasIndustria.cambiarActualAnterior();
             ventasIndustria.calcular(bimestreList,ventasList);
             ventasIndustria.setNumero(bimestre.getNumero());
-
             ventasIndustriaService.update(ventasIndustria);
+
+            if(ventas.getInventarioUnidades()>=juego.getMercado() || visionGeneral.getPorcentajeDeMercado()<2 || estadoResultados.getUtilidadNeta()<0)
+                empresa.setEstado("Perdedor");
+            if(visionGeneral.getPorcentajeDeMercado()>85  || estadoResultadosService.unicaEmpresaConValorPositivo(bimestre.getCodigo(),bimestre.getNombreEmpresa(),bimestre.getNumero()))
+                empresa.setEstado("Ganador");
 
         }
     }
@@ -142,66 +152,121 @@ public class BimestreController {
     @GetMapping(value="/balanceGeneral/{id}")
     @ResponseStatus(HttpStatus.OK)
     public BalanceGeneral getBalance(@PathVariable String id) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return balanceGeneralService.obtenerBalance(id);
     }
 
     @GetMapping(value="/ventas/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Ventas getVentas(@PathVariable String id) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return ventasService.obtenerVentas(id);
     }
 
     @GetMapping(value="/produccion/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Produccion getProduccion(@PathVariable String id) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return produccionService.obtenerProduccion(id);
     }
 
     @GetMapping(value="/produccionBimestres/{codigo}")
     @ResponseStatus(HttpStatus.OK)
     public List<Double> getProduccionBimestres(@PathVariable String codigo) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return produccionService.sumatoriaProduccionEmpresas(codigo);
     }
     @GetMapping(value="/precioUnitarioBimestres/{codigo}")
     @ResponseStatus(HttpStatus.OK)
     public List<Double> getPrecioUnitarioBimestres(@PathVariable String codigo) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return bimestreService.promedioPrecioUnitarioEmpresas(codigo);
     }
 
     @GetMapping(value="/utilidadNetaBimestres/{codigo}/{empresa}")
     @ResponseStatus(HttpStatus.OK)
     public List<Double> getUtilidadNetaBimestres(@PathVariable String codigo, @PathVariable String empresa) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return estadoResultadosService.promedioUtilidadNetaEmpresas(empresaService.listarEmpresasPorCodigoJuego(codigo),empresa);
     }
 
     @GetMapping(value="/ventasIndustria/{id}")
     @ResponseStatus(HttpStatus.OK)
     public VentasIndustria getVentasIndustria(@PathVariable String id) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return ventasIndustriaService.obtenerVentasIndustria(id);
     }
 
     @GetMapping(value="/ventasIndustriaBimestres/{nombre}")
     @ResponseStatus(HttpStatus.OK)
     public List<VentasIndustria> getVentasIndustriaBimestre(@PathVariable String nombre) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return ventasIndustriaService.obtenerListaVentasIndustriaBimestre(nombre);
     }
 
     //id codigo juego
-    @GetMapping(value="/visionGeneral/{id}")
+    @GetMapping(value="/visionGeneral/{id}/{numero}")
     @ResponseStatus(HttpStatus.OK)
-    public List<VisionGeneral> getVisionesGenerales(@PathVariable String id) throws Exception {
-        return visionGeneralService.listarVisionesGeneralesJuego(id);
+    public List<VisionGeneral> getVisionesGenerales(@PathVariable String id, @PathVariable int numero) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return visionGeneralService.listarVisionesGeneralesJuegoNumeroBimestre(id,numero);
     }
 
     @GetMapping(value="/costosProduccion/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CostosProduccion getCostos(@PathVariable String id) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return costosProduccionService.obtenerCostoProduccion(id);
     }
 
     @GetMapping(value="/estadoResultadosEmpresa/{empresa}")
     @ResponseStatus(HttpStatus.OK)
     public List<EstadoResultados> getAll(@PathVariable String empresa) throws Exception {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return estadoResultadosService.listarEstadosEmpresa(empresa);
     }
 
@@ -209,6 +274,7 @@ public class BimestreController {
     @PostMapping(value="/empresa/{codigo}")
     @ResponseStatus(HttpStatus.OK)
     public void crearEmpresa(@RequestBody Empresa empresa, @PathVariable String codigo ) throws Exception {
+
         if(empresa!=null && codigo!=null){
             Juego juego=juegoService.obtenerJuego(codigo);
                 if(juego.getCantidadEmpresa()<=5) {
@@ -231,13 +297,10 @@ public class BimestreController {
                     empresa.setCodigoJuego(codigo);
                     empresa.set_id(empresa.getNombre()+codigo);
                     empresaService.save(empresa);
-                    VisionGeneral visionGeneral =new VisionGeneral();
+
                     Produccion produccion= new Produccion();
                     VentasIndustria ventasIndustria=new VentasIndustria();
-                    visionGeneral.set_id("VG"+empresa.getNombre()+codigo);
-                    visionGeneral.setNombreEmpresa(empresa.getNombre());
-                    visionGeneral.setCodigoVision(codigo);
-                    visionGeneralService.save(visionGeneral);
+
                     produccion.setNombreEmpresaProduccion(empresa.getNombre());
                     produccion.set_id("PR"+empresa.getNombre()+codigo);
 
@@ -254,7 +317,6 @@ public class BimestreController {
     @PostMapping(value="/juego")
     @ResponseStatus(HttpStatus.OK)
     public void crearJuego(@RequestBody Juego juego) throws Exception {
-
         juegoService.save(juego);
     }
 

@@ -26,6 +26,8 @@ public class Empresa {
     private int produccion=500;
     private int cantidadRealVendida=500;
 
+    private String estado="Jugando";
+
 
 
 
@@ -123,17 +125,7 @@ public class Empresa {
     }
    //guardar produccion en empresa
     public void calcular(List<Empresa> empresaList,int precioUnitario,int marketing,int investigacion, int activos, int inventarioUnidadesAnterior){
-       /* double suma=0;
-        for(int i=0;i<empresaList.size();i++){
-            if(empresaList.get(i).get_id()!=this._id);
-                suma=suma+empresaList.get(i).getCantidadVendidaAnterior();
-        }
 
-        suma=suma/2;
-        this.cantidadVendida=((337.5-precioUnitario)/0.18)-suma;
-        cantidadVendida=(double) Math.round(cantidadVendida*100)/100;
-        System.out.println(this.cantidadVendida);
-        this.cantidadVendidaAnterior=this.cantidadVendida;*/
        int suma=0;
        for (int i=0;i<empresaList.size();i++){
            if(empresaList.get(i).get_id()!=this._id)
@@ -202,5 +194,15 @@ public class Empresa {
 
     public void setCantidadRealVendida(int cantidadRealVendida) {
         this.cantidadRealVendida = cantidadRealVendida;
+    }
+
+
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

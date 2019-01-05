@@ -19,8 +19,8 @@ public class EstadoResultados {
     private int utilidadNeta;
 
 
-    private String codigo;
-    private int numero;
+    private String codigoEstado;
+    private int numeroEstado;
     private String empresa;
 
 
@@ -189,12 +189,12 @@ public class EstadoResultados {
 
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumeroEstado() {
+        return numeroEstado;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumeroEstado(int numeroEstado) {
+        this.numeroEstado = numeroEstado;
     }
 
     public String getEmpresa() {
@@ -205,11 +205,11 @@ public class EstadoResultados {
         this.empresa = empresa;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoEstado() {
+        return codigoEstado;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoEstado(String codigoEstado) {
+        this.codigoEstado = codigoEstado;
     }
 }

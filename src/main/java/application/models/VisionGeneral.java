@@ -11,7 +11,7 @@ public class VisionGeneral {
     private int precioUnitario;
     private int porcentajeDeMercado;
     private String codigoVision;
-
+    private int numeroVision;
     public String get_id() {
         return _id;
     }
@@ -82,5 +82,13 @@ public class VisionGeneral {
 
     public void setCodigoVision(String codigoVision) {
         this.codigoVision = codigoVision;
+    }
+
+    public int getNumeroVision() {
+        return numeroVision;
+    }
+
+    public void setNumeroVision(int numeroVision) {
+        this.numeroVision = numeroVision;
     }
 }
