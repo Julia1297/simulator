@@ -12,6 +12,10 @@ public class VisionGeneral {
     private int porcentajeDeMercado;
     private String codigoVision;
     private int numeroVision;
+
+    private int puntajeMercado =2;
+    private int puntajeBeneficio =2;
+
     public String get_id() {
         return _id;
     }
@@ -90,5 +94,21 @@ public class VisionGeneral {
 
     public void setNumeroVision(int numeroVision) {
         this.numeroVision = numeroVision;
+    }
+
+    public int getPuntajeMercado() {
+        return puntajeMercado;
+    }
+
+    public void setPuntajeMercado(int puntajeMercado) {
+        this.puntajeMercado = puntajeMercado;
+    }
+
+    public int getPuntajeBeneficio() {
+        return puntajeBeneficio;
+    }
+
+    public void setPuntajeBeneficio(int puntajeBeneficio) {
+        this.puntajeBeneficio = puntajeBeneficio;
     }
 }

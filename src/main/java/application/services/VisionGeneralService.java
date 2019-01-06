@@ -8,6 +8,7 @@ import com.cloudant.client.api.query.QueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static com.cloudant.client.api.query.Expression.eq;
@@ -37,9 +38,34 @@ public class VisionGeneralService {
         List<VisionGeneral> visionGeneralList =  queryResult.getDocs();
         if(visionGeneralList.size()==0)
             return null;
-        else
-            return  visionGeneralList;
+        else {
+            visionGeneralList.sort(Comparator.comparing(VisionGeneral::getPorcentajeDeMercado));
+            int puntaje=2*visionGeneralList.size();
+            for(int i=visionGeneralList.size()-1;i>=0;i--) {
+                if (i > 0 && visionGeneralList.get(i).getPorcentajeDeMercado() != visionGeneralList.get(i - 1).getPorcentajeDeMercado()) {
+                    visionGeneralList.get(i).setPuntajeMercado(puntaje);
+                    puntaje--;
+                    puntaje--;
+                } else {
+                    visionGeneralList.get(i).setPuntajeMercado(puntaje);
+                }
+            }
+                visionGeneralList.sort(Comparator.comparing(VisionGeneral::getBeneficio));
+                puntaje=2*visionGeneralList.size();
+                for(int j=visionGeneralList.size()-1;j>=0;j--){
+                    if(j>0 && visionGeneralList.get(j).getBeneficio()!=visionGeneralList.get(j-1).getBeneficio()) {
+                        visionGeneralList.get(j).setPuntajeBeneficio(puntaje);
+                        puntaje--;
+                        puntaje--;
+                    }
+                    else{
+                        visionGeneralList.get(j).setPuntajeBeneficio(puntaje);
+                    }
+                }
+            visionGeneralList.sort(Comparator.comparing(VisionGeneral::getNombreEmpresa));
 
+            return visionGeneralList;
+        }
     }
 
     public void actualizarPorcentajesMercado(String codigo, int numero, List<Empresa> empresaList){

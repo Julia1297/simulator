@@ -3,20 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="293a207d-ccb4-4b59-a86e-bf993fc8ecf2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" afterPath="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/services/BimestreService.java" afterPath="$PROJECT_DIR$/src/main/java/application/services/BimestreService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/services/EstadoResultadosService.java" afterPath="$PROJECT_DIR$/src/main/java/application/services/EstadoResultadosService.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" afterPath="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/controllers/BimestreController.class" afterPath="$PROJECT_DIR$/target/classes/application/controllers/BimestreController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/Empresa.class" afterPath="$PROJECT_DIR$/target/classes/application/models/Empresa.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/EstadoResultados.class" afterPath="$PROJECT_DIR$/target/classes/application/models/EstadoResultados.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/models/VisionGeneral.class" afterPath="$PROJECT_DIR$/target/classes/application/models/VisionGeneral.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/services/BimestreService.class" afterPath="$PROJECT_DIR$/target/classes/application/services/BimestreService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/services/EstadoResultadosService.class" afterPath="$PROJECT_DIR$/target/classes/application/services/EstadoResultadosService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/services/VisionGeneralService.class" afterPath="$PROJECT_DIR$/target/classes/application/services/VisionGeneralService.class" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cloudant" afterPath="$PROJECT_DIR$/src/main/resources/cloudant" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,21 +34,40 @@
       <file leaf-file-name="BimestreController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
+            <state relative-caret-position="1655">
+              <caret line="323" column="0" lean-forward="true" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VisionGeneralService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VisionGeneralService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="274">
+              <caret line="64" column="87" lean-forward="false" selection-start-line="64" selection-start-column="87" selection-end-line="64" selection-end-column="87" />
               <folding>
+                <element signature="e#3854#3855#0" expanded="true" />
+                <element signature="e#3894#3895#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VisionGeneral.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+              <folding>
+                <element signature="e#2245#2246#0" expanded="true" />
+                <element signature="e#2282#2283#0" expanded="true" />
+                <element signature="e#2339#2340#0" expanded="true" />
+                <element signature="e#2391#2392#0" expanded="true" />
+                <element signature="e#2431#2432#0" expanded="true" />
                 <element signature="e#2470#2471#0" expanded="true" />
-                <element signature="e#2510#2511#0" expanded="true" />
+                <element signature="e#2531#2532#0" expanded="true" />
+                <element signature="e#2587#2588#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,18 +76,18 @@
       <file leaf-file-name="Produccion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Produccion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="493">
               <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cloudant" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cloudant" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/cloudant">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,19 +143,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EstadoResultados.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2142">
-              <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-              <folding>
-                <element signature="e#5289#5290#0" expanded="true" />
-                <element signature="e#5324#5325#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -182,14 +177,14 @@
         <option value="$PROJECT_DIR$/src/main/java/application/models/Produccion.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/EmpresaService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/Juego.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/cloudant" />
-        <option value="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/Empresa.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/EstadoResultadosService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/models/EstadoResultados.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/services/BimestreService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/cloudant" />
+        <option value="$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java" />
+        <option value="$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java" />
       </list>
     </option>
   </component>
@@ -224,8 +219,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="697" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="751" />
     <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -245,8 +241,9 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,7 +333,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -521,12 +517,13 @@
       <workItem from="1546467037687" duration="2112000" />
       <workItem from="1546484014465" duration="4984000" />
       <workItem from="1546612708515" duration="6412000" />
-      <workItem from="1546703680909" duration="3071000" />
+      <workItem from="1546703680909" duration="3454000" />
+      <workItem from="1546785568598" duration="5232000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151340000" />
+    <option name="totallyTimeSpent" value="156955000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -558,10 +555,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4312394" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34125638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23259762" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24205749" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41896552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36613604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -844,25 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2312">
           <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding>
-            <element signature="e#5017#5018#0" expanded="false" />
-            <element signature="e#5046#5047#0" expanded="false" />
-            <element signature="e#5090#5091#0" expanded="false" />
-            <element signature="e#5126#5127#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#1997#1998#0" expanded="false" />
-            <element signature="e#2032#2033#0" expanded="false" />
-            <element signature="e#2085#2086#0" expanded="false" />
-            <element signature="e#2133#2134#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -882,8 +860,8 @@
         <state relative-caret-position="2142">
           <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
           <folding>
-            <element signature="e#5289#5290#0" expanded="true" />
-            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5289#5290#0" expanded="false" />
+            <element signature="e#5324#5325#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -932,64 +910,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding>
-            <marker date="1534605103233" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1534605103233" expanded="false" signature="148:838" ph="..." />
-            <marker date="1534605103233" expanded="true" signature="1502:1509" ph="{}" />
-            <marker date="1534605103233" expanded="true" signature="1623:2724" ph="{...}" />
-            <marker date="1534605103233" expanded="true" signature="1869:2104" ph="{...}" />
-            <marker date="1534605103233" expanded="true" signature="1946:2086" ph="{...}" />
-            <marker date="1534605103233" expanded="true" signature="2847:5638" ph="{...}" />
-            <marker date="1534605103233" expanded="false" signature="5697:5708" ph=" { " />
-            <marker date="1534605103233" expanded="false" signature="5757:5763" ph=" }" />
-            <marker date="1534605103233" expanded="false" signature="5824:5835" ph=" { " />
-            <marker date="1534605103233" expanded="false" signature="5886:5892" ph=" }" />
-            <marker date="1534605103233" expanded="true" signature="5951:6532" ph="{...}" />
-            <marker date="1534605103233" expanded="true" signature="6553:6763" ph="{...}" />
-            <marker date="1534605103233" expanded="false" signature="6781:6792" ph=" { " />
-            <marker date="1534605103233" expanded="false" signature="6805:6811" ph=" }" />
-            <marker date="1534605103233" expanded="false" signature="6849:6860" ph=" { " />
-            <marker date="1534605103233" expanded="false" signature="6883:6889" ph=" }" />
-            <marker date="1534605103233" expanded="false" signature="6953:6964" ph=" { " />
-            <marker date="1534605103233" expanded="false" signature="7013:7019" ph=" }" />
-            <marker date="1534605103233" expanded="true" signature="7077:7353" ph="{...}" />
-            <marker date="1534605103233" expanded="true" signature="7366:7898" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/models/Produccion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="493">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="e#2470#2471#0" expanded="true" />
-            <element signature="e#2510#2511#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/cloudant">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/controllers/BimestreController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1655">
+          <caret line="323" column="0" lean-forward="true" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/models/VisionGeneral.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <element signature="e#2245#2246#0" expanded="true" />
+            <element signature="e#2282#2283#0" expanded="true" />
+            <element signature="e#2339#2340#0" expanded="true" />
+            <element signature="e#2391#2392#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2470#2471#0" expanded="true" />
+            <element signature="e#2531#2532#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/services/VisionGeneralService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="64" column="87" lean-forward="false" selection-start-line="64" selection-start-column="87" selection-end-line="64" selection-end-column="87" />
+          <folding>
+            <element signature="e#3854#3855#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
