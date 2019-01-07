@@ -121,6 +121,11 @@ public class BimestreController {
             //juego.calcularMercadoDesatendido(empresas);
 
             empresa =empresaService.obtenerEmpresa(bimestre.getNombreEmpresa()+bimestre.getCodigo()) ;
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             visionGeneral=visionGeneralService.obtenerVisionGeneral("VG"+bimestre.getNombreEmpresa()+bimestre.getNumero()+bimestre.getCodigo());
             visionGeneral.calcular(empresa.getCantidadRealVendida(),bimestre.getProduccion(),estadoResultados.getUtilidadNeta(),bimestre.getPrecioUnitario(),empresa.getPorcentajeDeMercado());
             visionGeneralService.update(visionGeneral);
@@ -129,7 +134,17 @@ public class BimestreController {
             produccion.setNumero(bimestre.getNumero());
             //corregir list
             List<CostosProduccion> costosProduccionList=costosProduccionService.obtenerEstadoResultaodsPorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             List<Bimestre> bimestreList =bimestreService.obtenerBimestrePorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             List<Ventas> ventasList =ventasService.obtenerVentasPorNumeroYJuego(bimestre.getCodigo(),bimestre.getNumero());
             produccion.cambiarActualAnterior();
             produccion.calcular(bimestreList,costosProduccionList);

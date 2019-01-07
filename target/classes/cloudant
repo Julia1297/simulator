@@ -1,4 +1,4 @@
 cloudant.username= b4a05334-38bd-4994-b68a-082ce96c5f24-bluemix
 cloudant.password= 68cf7ef0a80bfd30c96fedd4ac9cd2bead9f3711b81ff71fc96b36f4e3ec1e44
 cloudant.url= https://b4a05334-38bd-4994-b68a-082ce96c5f24-bluemix:68cf7ef0a80bfd30c96fedd4ac9cd2bead9f3711b81ff71fc96b36f4e3ec1e44@b4a05334-38bd-4994-b68a-082ce96c5f24-bluemix.cloudant.com
-cloudant.db= springdemo
+cloudant.db= simulacion
